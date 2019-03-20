@@ -24,4 +24,9 @@
       <Filter>Pliki zasobów</Filter>
     </Text>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
