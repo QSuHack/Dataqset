@@ -16,4 +16,6 @@ struct osoba
 	std::string nazwisko;
 	std::string miasto;
 };
-void znajdz_osobe(std::vector <osoba> &baza);
+std::ostream& operator<< (std::ostream& out, osoba p);
+osoba znajdz_poj_osobe(std::vector <osoba> &baza, std::string szukana_wartosc);
+std::vector<osoba> znajdz_zestaw_osob(std::vector <osoba> &baza, std::string szukana_wartosc);

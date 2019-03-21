@@ -50,9 +50,14 @@ int main()
 	}
 
 	auto end = std::chrono::system_clock::now();
-	std::chrono::duration<double> elapsed_seconds = end - start;
-	std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
-	
+	chrono::duration<double> elapsed_seconds = end - start;
+	cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+	cout << znajdz_poj_osobe(baza, "Sobik");
+	for (auto x : znajdz_zestaw_osob(baza, "Skierniewice"))
+	{
+		cout << x<<"\n";
+	}
+
 	_getch();
 	return 0;
 }
