@@ -40,3 +40,11 @@ std::vector<osoba> znajdz_zestaw_osob(std::vector<osoba>& baza, std::string szuk
 	}
 	return zestaw;
 }
+
+tm get_current_time()
+{
+	time_t     now = time(0);
+	struct tm  tstruct;
+	localtime_s(&tstruct, &now);
+	return tstruct;
+}

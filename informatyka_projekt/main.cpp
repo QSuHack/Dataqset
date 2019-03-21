@@ -12,7 +12,10 @@ void pobierz_dane(vector <osoba> &baza)
 	while (!plik.eof())
 	{
 		plik >> c.imie >> c.nazwisko >> c.PESEL >> c.miasto;
-		baza.push_back(c);
+		if (c.PESEL.length() ==11 )
+		{
+			baza.push_back(c);
+		}
 	}
 
 }
@@ -46,17 +49,19 @@ int main()
 	pobierz_dane(baza);
 	for (auto x : baza)
 	{
-		cout << x.PESEL << "\n"; cout <<check_pesel(x.PESEL)<< " ";
+		cout << x.PESEL << "\n"; cout << check_pesel(x.PESEL) << " ";
 	}
 
 	auto end = std::chrono::system_clock::now();
 	chrono::duration<double> elapsed_seconds = end - start;
 	cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
-	cout << znajdz_poj_osobe(baza, "Sobik");
+	auto a = znajdz_poj_osobe(baza, "Sobik");
+	cout << "\n" << a.PESEL <<" "  << a.wiek;
 	for (auto x : znajdz_zestaw_osob(baza, "Skierniewice"))
 	{
 		cout << x<<"\n";
 	}
+
 
 	_getch();
 	return 0;
