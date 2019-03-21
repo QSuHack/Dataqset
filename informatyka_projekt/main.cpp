@@ -1,13 +1,9 @@
+#pragma once
 #include "include.h"
+#include <chrono>
 
 using namespace std;
-struct osoba
-{
-	string PESEL;
-	string imie;
-	string nazwisko;
-	string miasto;
-};
+
 void pobierz_dane(vector <osoba> &baza)
 {
 
@@ -44,15 +40,19 @@ void dodaj_osobe(vector <osoba> &baza){
 }
 int main()
 {
+	auto start = std::chrono::system_clock::now();
 
 	vector <osoba> baza;
 	pobierz_dane(baza);
 	for (auto x : baza)
 	{
-		cout << x.PESEL << "\n";
+		cout << x.PESEL << "\n"; cout <<check_pesel(x.PESEL)<< " ";
 	}
 
-
-	getch();
+	auto end = std::chrono::system_clock::now();
+	std::chrono::duration<double> elapsed_seconds = end - start;
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+	
+	_getch();
 	return 0;
 }
