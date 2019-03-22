@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 
+tm get_current_time();
 bool check_pesel(std::string pesel);
 struct osoba
 {
@@ -15,7 +16,35 @@ struct osoba
 	std::string imie;
 	std::string nazwisko;
 	std::string miasto;
+	int wiek; 
+	tm data_urodzenia;
+	int wylicz_wiek(){
+		return get_current_time().tm_year+1900 - (this->data_urodzenia.tm_year);
+	
+	}
+	tm wyluskaj_date_urodzenia(std::string pesel){
+		tm data;
+		int a = std::stoi(pesel.substr(0,2));
+			if (std::stoi(pesel.substr(2, 2)) <= 12)
+			{
+				
+				data.tm_year = std::stoi(pesel.substr(0,2))+1900;
+				data.tm_mon = std::stoi(pesel.substr(2, 2));
+				data.tm_mday = std::stoi(pesel.substr(4, 2));
+			}
+			else
+			{	
+				data.tm_year = std::stoi(pesel.substr(0, 2)) + 2000;
+				data.tm_mon = std::stoi(pesel.substr(2, 2)) - 21;
+				data.tm_mday = std::stoi(pesel.substr(4, 2));
+			}
+			return data;
+		}
+	
+	
+	
 };
 std::ostream& operator<< (std::ostream& out, osoba p);
 osoba znajdz_poj_osobe(std::vector <osoba> &baza, std::string szukana_wartosc);
 std::vector<osoba> znajdz_zestaw_osob(std::vector <osoba> &baza, std::string szukana_wartosc);
+void ustaw_pola(std::vector <osoba> &baza);
