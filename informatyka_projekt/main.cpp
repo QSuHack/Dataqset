@@ -50,6 +50,22 @@ void dodaj_osobe(vector <osoba> &baza){
 	baza.push_back(os);
 
 }
+void usun_osobe(vector <osoba> &baza, osoba os){
+	for (auto it=baza.begin();it<baza.end();it++)
+	{
+		if (*it == os){
+			baza.erase(it);
+			break;
+		}
+	}
+	
+}
+void pokaz_baze(vector<osoba> baza){
+	for (auto it = baza.begin(); it < baza.end(); it++)
+	{
+		cout << *it << "\n";
+	}
+}
 int main()
 {
 	auto start = std::chrono::system_clock::now();
@@ -60,7 +76,7 @@ int main()
 	{
 		cout << x.PESEL << "\n"; cout << check_pesel(x.PESEL) << " ";
 	}
-	osoba p, d;
+
 
 	
 	auto end = std::chrono::system_clock::now();
@@ -71,8 +87,10 @@ int main()
 	{
 		cout << x<<"\n";
 	}
-
-	
+	pokaz_baze(baza);
+	cout << "USUWANIE"<<"\n\n\n";
+	usun_osobe(baza, znajdz_poj_osobe(baza, "B³a¿ewicz"));
+	pokaz_baze(baza);
 	_getch();
 	return 0;
 }

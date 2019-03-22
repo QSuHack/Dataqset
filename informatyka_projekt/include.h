@@ -18,6 +18,10 @@ struct osoba
 	std::string miasto;
 	int wiek; 
 	tm data_urodzenia;
+	bool operator== (osoba os){
+		return (this->PESEL == os.PESEL);
+	
+	}
 	int wylicz_wiek(){
 		return get_current_time().tm_year+1900 - (this->data_urodzenia.tm_year);
 	
