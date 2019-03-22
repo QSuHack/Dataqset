@@ -17,8 +17,17 @@ void pobierz_dane(vector <osoba> &baza)
 			baza.push_back(c);
 		}
 	}
+	ustaw_pola(baza);
+}
+
+void ustaw_pola(vector <osoba> &baza){
+	for (auto x : baza){
+		x.data_urodzenia = x.wyluskaj_date_urodzenia(x.PESEL);
+		x.wiek = x.wylicz_wiek();
+	}
 
 }
+
 void dodaj_osobe(vector <osoba> &baza){
 	osoba os;
 	string os_tmp;
@@ -51,18 +60,19 @@ int main()
 	{
 		cout << x.PESEL << "\n"; cout << check_pesel(x.PESEL) << " ";
 	}
+	osoba p, d;
 
+	
 	auto end = std::chrono::system_clock::now();
 	chrono::duration<double> elapsed_seconds = end - start;
 	cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
 	auto a = znajdz_poj_osobe(baza, "Sobik");
-	cout << "\n" << a.PESEL <<" "  << a.wiek;
 	for (auto x : znajdz_zestaw_osob(baza, "Skierniewice"))
 	{
 		cout << x<<"\n";
 	}
 
-
+	
 	_getch();
 	return 0;
 }
