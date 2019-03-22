@@ -60,6 +60,25 @@ void usun_osobe(vector <osoba> &baza, osoba os){
 	}
 	
 }
+vector <osoba> kopia_bazy(vector<osoba>baza){
+	vector<osoba>new_baza(baza);
+	return new_baza;
+}
+
+void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=false){
+	fstream plikw;
+	if(kasuj){
+		plikw.open((nazwa_pliku + ".txt"), fstream::out | fstream::trunc);
+	}
+	else
+	{
+		plikw.open((nazwa_pliku + ".txt"), fstream::app | fstream::out);
+	}
+	for (auto it = baza.begin();it < baza.end(); it++)
+	{
+		plikw << *it <<"\n";
+	}
+}
 void pokaz_baze(vector<osoba> baza){
 	for (auto it = baza.begin(); it < baza.end(); it++)
 	{
@@ -90,7 +109,7 @@ int main()
 	pokaz_baze(baza);
 	cout << "USUWANIE"<<"\n\n\n";
 	usun_osobe(baza, znajdz_poj_osobe(baza, "B³a¿ewicz"));
-	pokaz_baze(baza);
+	archiwizuj(baza,"archiwum",true);
 	_getch();
 	return 0;
 }
