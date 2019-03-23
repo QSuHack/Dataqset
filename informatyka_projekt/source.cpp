@@ -1,6 +1,8 @@
 #pragma once
 #include "include.h"
+using namespace std;
 
+// tu funkcje nie zwi¹zane ani bezpoœrednio z baz¹ ani z menu
 bool check_pesel(std::string pesel){
 if ((1* (int)pesel[0] + 3* (int)pesel[1] + 7* (int)pesel[2] + 9* (int)pesel[3]
 	+ 1* (int)pesel[4] + 3* (int)pesel[5]+ 7 * (int)pesel[6] + 9 * (int)pesel[7]
@@ -27,3 +29,4 @@ tm get_current_time()
 	localtime_s(&tstruct, &now);
 	return tstruct;
 }
+

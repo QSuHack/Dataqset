@@ -8,7 +8,8 @@ using namespace std;
 
 int main()
 {
-	pokaz_menu();
+	wstep();
+	ranga();
 	auto start = std::chrono::system_clock::now();
     std::vector<osoba> baza;
 	

@@ -53,9 +53,9 @@ vector <osoba> kopia_bazy(vector<osoba>baza){
 }
 
 
-void pobierz_dane(vector <osoba> &baza)
+bool pobierz_dane(vector <osoba> &baza)
 {
-
+	bool flaga = false;
 	ifstream plik("dane.txt");
 	osoba c;
 	while (!plik.eof())
@@ -66,16 +66,17 @@ void pobierz_dane(vector <osoba> &baza)
 			baza.push_back(c);
 		}
 	}
-	ustaw_pola(baza);
+	flaga = ustaw_pola(baza);
+	return flaga;
 }
 
 
-void ustaw_pola(vector <osoba> &baza){
+bool ustaw_pola(vector <osoba> &baza){
 	for (auto x : baza){
 		x.data_urodzenia = x.wyluskaj_date_urodzenia(x.PESEL);
 		x.wiek = x.wylicz_wiek();
 	}
-
+	return true;
 }
 
 
@@ -117,4 +118,10 @@ void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=fals
 	{
 		plikw << *it <<"\n";
 	}
+}
+
+
+vector <osoba> szyfruj_baze(vector<osoba> baza, string haslo){
+	
+
 }
