@@ -29,6 +29,9 @@
     <Text Include="dane.txt">
       <Filter>Pliki zasobów</Filter>
     </Text>
+    <Text Include="archiwum.txt">
+      <Filter>Pliki zasobów</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">

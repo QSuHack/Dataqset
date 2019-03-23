@@ -147,6 +147,7 @@
     <ClCompile Include="source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="archiwum.txt" />
     <Text Include="dane.txt" />
   </ItemGroup>
   <ItemGroup>
