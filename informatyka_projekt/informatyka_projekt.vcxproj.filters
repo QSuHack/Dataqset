@@ -24,12 +24,15 @@
     <ClCompile Include="menu.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="operacje_na_bazie.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="dane.txt">
+    <Text Include="archiwum.txt">
       <Filter>Pliki zasobów</Filter>
     </Text>
-    <Text Include="archiwum.txt">
+    <Text Include="dane.txt">
       <Filter>Pliki zasobów</Filter>
     </Text>
   </ItemGroup>

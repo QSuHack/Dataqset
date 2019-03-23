@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1553283816 source:d:\projekty visual studio\informatyka_projekt\informatyka_projekt\main.cpp
+	"include.h"
+	<chrono>
+
+1553281149 d:\projekty visual studio\informatyka_projekt\informatyka_projekt\include.h
+	<iostream>
+	<conio.h>
+	<ctime>
+	<vector>
+	<stdlib.h>
+	<algorithm>
+	<fstream>
+	<string>
+
+1553111632 source:d:\projekty visual studio\informatyka_projekt\informatyka_projekt\menu.cpp
+	"include.h"
+

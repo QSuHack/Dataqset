@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <fstream>
 #include <string>
+void pokaz_menu();
 
 tm get_current_time();
 bool check_pesel(std::string pesel);
@@ -48,7 +49,16 @@ struct osoba
 	
 	
 };
+
 std::ostream& operator<< (std::ostream& out, osoba p);
 osoba znajdz_poj_osobe(std::vector <osoba> &baza, std::string szukana_wartosc);
 std::vector<osoba> znajdz_zestaw_osob(std::vector <osoba> &baza, std::string szukana_wartosc);
 void ustaw_pola(std::vector <osoba> &baza);
+void dodaj_osobe(std::vector<osoba>& baza);
+void archiwizuj(std::vector<osoba> baza, std::string nazwa_pliku, bool kasuj);
+void pokaz_baze(std::vector<osoba> baza);
+void pobierz_dane(std::vector <osoba> &baza);
+void usun_osobe(std::vector <osoba> &baza, osoba os);
+
+std::vector<osoba> kopia_bazy(std::vector<osoba> baza);
+ 

@@ -17,29 +17,8 @@ std::ostream& operator<< (std::ostream& out, osoba p) // TU MO¯NA POPRAWIÆ WYŒWI
 	out << p.imie << " " << p.nazwisko<<" " << p.PESEL<<" "<< p.miasto;
 	return out;
 }
-osoba znajdz_poj_osobe(std::vector<osoba>& baza, std::string szukana_wartosc)
-{
-	for (auto x : baza){
-	if (x.PESEL==szukana_wartosc || x.imie == szukana_wartosc || x.nazwisko== szukana_wartosc || x.miasto == szukana_wartosc)
-	{
-		return x;
-	}
-	}
-}
-std::vector<osoba> znajdz_zestaw_osob(std::vector<osoba>& baza, std::string szukana_wartosc)
-{
-	std::vector<osoba> zestaw;
-	osoba a;
-	for (auto x : baza)
-	{
-		if (x.PESEL == szukana_wartosc || x.imie == szukana_wartosc || x.nazwisko == szukana_wartosc || x.miasto == szukana_wartosc)
-		{
-			a = x;
-			zestaw.push_back(a);
-		}
-	}
-	return zestaw;
-}
+
+
 
 tm get_current_time()
 {
