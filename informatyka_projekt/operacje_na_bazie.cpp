@@ -121,7 +121,7 @@ void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=fals
 }
 
 
-vector <osoba> szyfruj_baze(vector<osoba> baza, string haslo){
+//vector <osoba> szyfruj_baze(vector<osoba> baza, string haslo){
 	
 
-}
+//}

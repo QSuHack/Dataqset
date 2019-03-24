@@ -1,13 +1,14 @@
 #pragma once
 #include "include.h"
 #include <chrono>
-
+#include <locale.h>
 using namespace std;
 
 
 
 int main()
 {
+	setlocale(LC_ALL, "polish");
 	wstep();
 	ranga();
 	auto start = std::chrono::system_clock::now();

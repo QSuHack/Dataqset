@@ -27,10 +27,13 @@ void ranga(){
 		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0){
 			pokaz_menu();
 		}
+
 		if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0){
 			cout << "Brak dostêpu. WeŸ, idŸ siê zajmij czymœ innym, ok? \n";
 		}
-		
+		if (GetKeyState(VK_ESCAPE)<0){
+			cout << "koniec";
+		}
 		else{
 			cout << "b³¹d";
 			
