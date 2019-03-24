@@ -1,95 +1,19 @@
 #pragma once
 #include "include.h"
 #include <chrono>
-
+#include <locale.h>
 using namespace std;
 
-void pobierz_dane(vector <osoba> &baza)
-{
 
-	ifstream plik("dane.txt");
-	osoba c;
-	while (!plik.eof())
-	{
-		plik >> c.imie >> c.nazwisko >> c.PESEL >> c.miasto;
-		if (c.PESEL.length() ==11 )
-		{
-			baza.push_back(c);
-		}
-	}
-	ustaw_pola(baza);
-}
 
-void ustaw_pola(vector <osoba> &baza){
-	for (auto x : baza){
-		x.data_urodzenia = x.wyluskaj_date_urodzenia(x.PESEL);
-		x.wiek = x.wylicz_wiek();
-	}
-
-}
-
-void dodaj_osobe(vector <osoba> &baza){
-	osoba os;
-	string os_tmp;
-	cout << "\nPodaj imiê: ";
-	cin >> os.imie;
-	cout << "\nPodaj nazwisko: ";
-	cin >> os.nazwisko; // TODO sprawdziæ czy nie puste etc.
-	bool flag = false;
-	while (!flag)
-	{
-		cout << "\nPodaj PESEL: ";
-		cin >> os_tmp;
-		flag = check_pesel(os_tmp);
-		if (!flag){
-			cout << "Niepoprawny format, spróbuj jeszcze raz!";
-		}
-	}
-	cout << "Podaj miasto: ";
-	cin >> os.miasto;
-	baza.push_back(os);
-
-}
-void usun_osobe(vector <osoba> &baza, osoba os){
-	for (auto it=baza.begin();it<baza.end();it++)
-	{
-		if (*it == os){
-			baza.erase(it);
-			break;
-		}
-	}
-	
-}
-vector <osoba> kopia_bazy(vector<osoba>baza){
-	vector<osoba>new_baza(baza);
-	return new_baza;
-}
-
-void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=false){
-	fstream plikw;
-	if(kasuj){
-		plikw.open((nazwa_pliku + ".txt"), fstream::out | fstream::trunc);
-	}
-	else
-	{
-		plikw.open((nazwa_pliku + ".txt"), fstream::app | fstream::out);
-	}
-	for (auto it = baza.begin();it < baza.end(); it++)
-	{
-		plikw << *it <<"\n";
-	}
-}
-void pokaz_baze(vector<osoba> baza){
-	for (auto it = baza.begin(); it < baza.end(); it++)
-	{
-		cout << *it << "\n";
-	}
-}
 int main()
 {
+	setlocale(LC_ALL, "polish");
+	wstep();
+	ranga();
 	auto start = std::chrono::system_clock::now();
-
-	vector <osoba> baza;
+    std::vector<osoba> baza;
+	
 	pobierz_dane(baza);
 	for (auto x : baza)
 	{
@@ -109,7 +33,7 @@ int main()
 	pokaz_baze(baza);
 	cout << "USUWANIE"<<"\n\n\n";
 	usun_osobe(baza, znajdz_poj_osobe(baza, "B³a¿ewicz"));
-	archiwizuj(baza,"archiwum",true);
+	archiwizuj(baza, "archiwum", true);
 	_getch();
 	return 0;
 }
