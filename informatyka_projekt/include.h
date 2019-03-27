@@ -12,6 +12,7 @@ void ranga();
 bool zaloguj_jako_wielki_brat();
 void pokaz_menu();
 
+
 tm get_current_time();
 bool check_pesel(std::string pesel);
 struct osoba
@@ -62,6 +63,6 @@ void archiwizuj(std::vector<osoba> baza, std::string nazwa_pliku, bool kasuj);
 void pokaz_baze(std::vector<osoba> baza);
 bool pobierz_dane(std::vector <osoba> &baza);
 void usun_osobe(std::vector <osoba> &baza, osoba os);
-
+void edytuj_baze(std::vector<osoba>& baza);
 std::vector<osoba> kopia_bazy(std::vector<osoba> baza);
  

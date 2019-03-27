@@ -47,14 +47,14 @@ bool zaloguj_jako_wielki_brat(){
 	cout << "Podaj has³o dostêpu: ";
 	cin >> haslo;
 	if (haslo==poprawne){
-	// tu daæ komunikat powitalny i ascii oko saurona
+	// tu daæ komunikat powitalny i ascii oko saurona or other else
 		return true;
 	}
 	return false;
 }
 void pokaz_menu(){
 	cout << " Tu bêdzie menu";
-	cout << "dostepne opcje: 1-in ,2||3-out";
+	cout << "Dostêpne opcje: \n1.Wczytaj dane z pliku.\n2.Poka¿ bazê danych.\n3.Edytuj bazê danych";
 	int position = 0;
 	while (true){
 		if (GetKeyState(VK_UP)<0)
@@ -77,14 +77,14 @@ void pokaz_menu(){
 	if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
 		cout << "2opcja";
 		pokaz_baze(baza);
-		fflush(stdin);
-		system("pause");
+
 		_getch();/// getch() wywala siê na ryj
 		system("cls");
+		pokaz_menu();
 	}
 	if (GetKeyState(0x33)<0 || GetKeyState(VK_NUMPAD3)<0){
 		cout << "3opcja";
-		pokaz_baze(baza);
+		edytuj_baze(baza);
 	}
 	if (GetKeyState(0x34)<0 || GetKeyState(VK_NUMPAD4)<0){
 		cout << "4opcja";
@@ -99,3 +99,27 @@ void pokaz_menu(){
 	}
 }
 
+void edytuj_baze(vector <osoba> &baza){
+	cout << "Wybierz co chcesz zedytowaæ: \n1.Dodaj osobê.\n2.Usuñ osobê\n3.Edytuj rekord\n";
+	while(true){
+		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0)
+		{
+			std::fflush(stdin);
+			dodaj_osobe(baza);
+			
+		}
+		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0)
+		{
+			cout << "STH";
+			//usun_osobe(baza, osoba_do_usuniecia);
+		}
+		if (GetKeyState(VK_ESCAPE)<0){
+			Sleep(100);
+			break;
+
+		}
+	}
+	pokaz_menu();
+
+
+}
