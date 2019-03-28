@@ -1,7 +1,7 @@
 #pragma once
 #include"include.h"
-#include<iostream>
-#include<iterator>
+
+
 
 using namespace std;
 
