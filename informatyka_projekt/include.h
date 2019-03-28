@@ -7,10 +7,13 @@
 #include <algorithm>
 #include <fstream>
 #include <string>
+#include<iterator>
+
 void wstep();
 void ranga();
 bool zaloguj_jako_wielki_brat();
 void pokaz_menu();
+
 
 tm get_current_time();
 bool check_pesel(std::string pesel);
@@ -64,4 +67,20 @@ bool pobierz_dane(std::vector <osoba> &baza);
 void usun_osobe(std::vector <osoba> &baza, osoba os);
 
 std::vector<osoba> kopia_bazy(std::vector<osoba> baza);
+void output(const std::vector<osoba>&dat);
+bool nameAtoZSortCondition(osoba &s1, osoba &s2);
+void sortByNameAtoZ(std::vector<osoba>&baza);
+bool nameZtoASortCondition(osoba &s1, osoba &s2);
+void sortByNameZtoA(std::vector<osoba>&baza);
+bool surnnameAtoZSortCondition(osoba &s1, osoba &s2);
+void sortBySurnameAtoZ(std::vector<osoba>&baza);
+bool surnnameZtoASortCondition(osoba &s1, osoba &s2);
+void sortBySurnameZtoA(std::vector<osoba>&baza);
+bool cityAtoZSortCondition(osoba &s1, osoba &s2);
+void sortByCityAtoZ(std::vector<osoba>&baza);
+bool cityZtoASortCondition(osoba &s1, osoba &s2);
+void sortByCityZtoA(std::vector<osoba>&baza);
+void sort_menu(std::vector<osoba>&baza);
+
+
  

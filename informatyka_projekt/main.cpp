@@ -2,17 +2,23 @@
 #include "include.h"
 #include <chrono>
 #include <locale.h>
+#include<vector>
+#include<iterator>
+
 using namespace std;
 
 
-
 int main()
-{
+{ 
+	vector<osoba>baza;
+	pobierz_dane(baza);
+	sort_menu(baza);
+	/*
 	setlocale(LC_ALL, "polish");
 	wstep();
 	ranga();
 	auto start = std::chrono::system_clock::now();
-    std::vector<osoba> baza;
+
 	
 	pobierz_dane(baza);
 	for (auto x : baza)
@@ -35,5 +41,6 @@ int main()
 	usun_osobe(baza, znajdz_poj_osobe(baza, "B³a¿ewicz"));
 	archiwizuj(baza, "archiwum", true);
 	_getch();
+	*/
 	return 0;
 }
