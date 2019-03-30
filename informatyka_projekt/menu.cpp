@@ -87,7 +87,7 @@ void pokaz_menu(){
 		edytuj_baze(baza);
 	}
 	if (GetKeyState(0x34)<0 || GetKeyState(VK_NUMPAD4)<0){
-		cout << "4opcja";
+		menu_wyswietl_osoby_w_wieku();
 	}
 	if (GetKeyState(0x35)<0 || GetKeyState(VK_NUMPAD5)<0){
 		cout << "5opcja";
@@ -121,5 +121,26 @@ void edytuj_baze(vector <osoba> &baza){
 	}
 	pokaz_menu();
 
+
+}
+
+void menu_wyswietl_osoby_w_wieku(){
+	int wiek_;
+	cout << "Podaj wiek:";
+	cin >> wiek_;
+	cout << "0.M³odsze\n1.Dok³adnie w tym wieku\n2.Starsze";
+	while (true)
+	{
+		if (GetKeyState(0x31)<0 || GetKeyState(VK_NUMPAD1)<0){
+			wyswietl_osoby_w_wieku(0, baza, wiek_);
+		}
+		if (GetKeyState(0x31)<0||GetKeyState(VK_NUMPAD1)<0){
+			wyswietl_osoby_w_wieku(1, baza, wiek_);
+			break;
+		}
+		if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
+			wyswietl_osoby_w_wieku(2, baza, wiek_);
+		}
+	}
 
 }

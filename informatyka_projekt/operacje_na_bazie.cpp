@@ -60,7 +60,8 @@ bool pobierz_dane(vector <osoba> &baza)
 	osoba c;
 	while (!plik.eof())
 	{
-		plik >> c.imie >> c.nazwisko >> c.PESEL >> c.miasto;
+		plik >> c.imie >> c.nazwisko >> c.PESEL;
+		getline(plik, c.miasto);
 		if (c.PESEL.length() ==11 )
 		{
 			baza.push_back(c);
@@ -84,11 +85,12 @@ void dodaj_osobe(vector <osoba> &baza)
 {
 	osoba os;
 	string os_tmp;
+	bool flag = false;
 	cout << "\nPodaj imiê: ";
 	cin >> os.imie;
 	cout << "\nPodaj nazwisko: ";
-	cin >> os.nazwisko; // TODO sprawdziæ czy nie puste etc.
-	bool flag = false;
+	cin >> os.nazwisko; // cin wycina bia³e znaki wiêc nie zapisze pustego.
+	flag = false;
 	while (!flag)
 	{
 		cout << "\nPodaj PESEL: ";
@@ -100,7 +102,7 @@ void dodaj_osobe(vector <osoba> &baza)
 		}
 	}
 	cout << "Podaj miasto: ";
-	cin >> os.miasto;
+	getline(cin, os.miasto);
 	baza.push_back(os);
 }
 
@@ -120,6 +122,38 @@ void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=fals
 	}
 }
 
+vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
+	//DO POPRAWIENIA 
+	auto it = baza.begin();
+	vector <osoba> wynik;
+	switch (mode)
+	{
+
+		for (it; it < baza.end(); it++)
+		{
+	case 0:
+		if (it->wiek < wiek)
+		{
+			wynik.push_back(*it);
+			break;
+		}
+	case 1:
+		if (it->wiek == wiek)
+		{
+			wynik.push_back(*it);
+			break;
+		}
+	case 2:
+		if (it->wiek > wiek)
+		{
+			wynik.push_back(*it);
+			break;
+		}
+		}
+	}
+		return wynik;
+
+}
 
 //vector <osoba> szyfruj_baze(vector<osoba> baza, string haslo){
 	

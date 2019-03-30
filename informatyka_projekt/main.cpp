@@ -13,13 +13,14 @@ int main()
 	ranga();
 	auto start = std::chrono::system_clock::now();
     std::vector<osoba> baza;
-	/*
+	
 	pobierz_dane(baza);
+	
 	for (auto x : baza)
 	{
 		cout << x.PESEL << "\n"; cout << check_pesel(x.PESEL) << " ";
 	}
-
+	
 
 	
 	auto end = std::chrono::system_clock::now();
@@ -33,7 +34,9 @@ int main()
 	pokaz_baze(baza);
 	cout << "USUWANIE"<<"\n\n\n";
 	usun_osobe(baza, znajdz_poj_osobe(baza, "B³a¿ewicz"));
-	archiwizuj(baza, "archiwum", true);*/
+	archiwizuj(baza, "archiwum", true);
 	_getch();
 	return 0;
 }
+
+
