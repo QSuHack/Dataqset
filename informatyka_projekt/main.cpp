@@ -15,11 +15,12 @@ int main()
     std::vector<osoba> baza;
 	
 	pobierz_dane(baza);
+	
 	for (auto x : baza)
 	{
 		cout << x.PESEL << "\n"; cout << check_pesel(x.PESEL) << " ";
 	}
-
+	
 
 	
 	auto end = std::chrono::system_clock::now();
@@ -37,3 +38,5 @@ int main()
 	_getch();
 	return 0;
 }
+
+

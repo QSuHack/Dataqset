@@ -47,14 +47,17 @@ bool zaloguj_jako_wielki_brat(){
 	cout << "Podaj hasło dostępu: ";
 	cin >> haslo;
 	if (haslo==poprawne){
+
 	// tu dać komunikat powitalny i ascii oko saurona
 		return true;
 	}
 	return false;
 }
 void pokaz_menu(){
+
 	cout << " Tu będzie menu";
 	cout << "dostepne opcje: 1-in ,2||3-out";
+
 	int position = 0;
 	while (true){
 		if (GetKeyState(VK_UP)<0)
@@ -81,13 +84,14 @@ void pokaz_menu(){
 		system("pause");
 		_getch();/// getch()
 		system("cls");
+		pokaz_menu();
 	}
 	if (GetKeyState(0x33)<0 || GetKeyState(VK_NUMPAD3)<0){
 		cout << "3opcja";
-		pokaz_baze(baza);
+		edytuj_baze(baza);
 	}
 	if (GetKeyState(0x34)<0 || GetKeyState(VK_NUMPAD4)<0){
-		cout << "4opcja";
+		menu_wyswietl_osoby_w_wieku();
 	}
 	if (GetKeyState(0x35)<0 || GetKeyState(VK_NUMPAD5)<0){
 		cout << "5opcja";
@@ -99,3 +103,48 @@ void pokaz_menu(){
 	}
 }
 
+void edytuj_baze(vector <osoba> &baza){
+	cout << "Wybierz co chcesz zedytowa�: \n1.Dodaj osob�.\n2.Usu� osob�\n3.Edytuj rekord\n";
+	while(true){
+		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0)
+		{
+			std::fflush(stdin);
+			dodaj_osobe(baza);
+			
+		}
+		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0)
+		{
+			cout << "STH";
+			//usun_osobe(baza, osoba_do_usuniecia);
+		}
+		if (GetKeyState(VK_ESCAPE)<0){
+			Sleep(100);
+			break;
+
+		}
+	}
+	pokaz_menu();
+
+
+}
+
+void menu_wyswietl_osoby_w_wieku(){
+	int wiek_;
+	cout << "Podaj wiek:";
+	cin >> wiek_;
+	cout << "0.M�odsze\n1.Dok�adnie w tym wieku\n2.Starsze";
+	while (true)
+	{
+		if (GetKeyState(0x31)<0 || GetKeyState(VK_NUMPAD1)<0){
+			wyswietl_osoby_w_wieku(0, baza, wiek_);
+		}
+		if (GetKeyState(0x31)<0||GetKeyState(VK_NUMPAD1)<0){
+			wyswietl_osoby_w_wieku(1, baza, wiek_);
+			break;
+		}
+		if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
+			wyswietl_osoby_w_wieku(2, baza, wiek_);
+		}
+	}
+
+}
