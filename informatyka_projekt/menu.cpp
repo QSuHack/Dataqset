@@ -1,7 +1,7 @@
 #pragma once
 #include "include.h"
 #include <Windows.h>
-
+#include <iomanip>
 using namespace std;
 std::vector<osoba> baza;
 
@@ -63,7 +63,7 @@ void pokaz_menu(){
 	Sleep(100);  // blokowanie multi-wywo³añ funkcji przy jednym wciœniêciu klawisza
 		if (GetKeyState(VK_UP)<0)
 	{
-		cout<< "up";
+		cout<< "E";
 
 	}
 	if (GetKeyState(VK_ESCAPE) < 0)
@@ -91,7 +91,7 @@ void pokaz_menu(){
 		edytuj_baze(baza);
 	}
 	if (GetKeyState(0x34)<0 || GetKeyState(VK_NUMPAD4)<0){
-		menu_wyswietl_osoby_w_wieku();
+		menu_wyswietl_osoby_w_wieku(); // <- tu daæ menu modu³u statystyk i przenieœæ to wywo³anie tam
 	}
 	if (GetKeyState(0x35)<0 || GetKeyState(VK_NUMPAD5)<0){
 		//sort_menu(baza);
@@ -115,6 +115,7 @@ void edytuj_baze(vector <osoba> &baza){
 		}
 		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0)
 		{
+			cout << "========EWAPORACJA========\n";
 			cout << "ZnajdŸ osobê do usuniêcia.\nPodaj imiê LUB nazwisko LUB PESEL:";
 			string osoba_do_usuniecia;
 			getline(cin, osoba_do_usuniecia);
@@ -152,15 +153,16 @@ void menu_wyswietl_osoby_w_wieku(){
 	cout << "0.M³odsze\n1.Dok³adnie w tym wieku\n2.Starsze";
 	while (true)
 	{
-		if (GetKeyState(0x31)<0 || GetKeyState(VK_NUMPAD1)<0){
-			wyswietl_osoby_w_wieku(0, baza, wiek_);
+		if (GetKeyState(0x30)<0 || GetKeyState(VK_NUMPAD0)<0){
+		pokaz_vector(wyswietl_osoby_w_wieku(0, baza, wiek_));
 		}
 		if (GetKeyState(0x31)<0||GetKeyState(VK_NUMPAD1)<0){
-			wyswietl_osoby_w_wieku(1, baza, wiek_);
+		pokaz_vector(	wyswietl_osoby_w_wieku(1, baza, wiek_));
 			break;
 		}
 		if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
-			wyswietl_osoby_w_wieku(2, baza, wiek_);
+		pokaz_vector(wyswietl_osoby_w_wieku(2, baza, wiek_));
+			break;
 		}
 	}
 

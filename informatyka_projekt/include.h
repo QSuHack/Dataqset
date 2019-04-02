@@ -85,6 +85,6 @@ void pokaz_vector(vector <T, A> vector_)
 struct ExBrakOsoby : public exception{
 	const char * what() const throw ()
 	{
-		return "Nie znaleziono takiej osoby";
+		return "Nie znaleziono osoby.";
 	}
 };

@@ -132,13 +132,16 @@ void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=fals
 }
 
 vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
-	//DO POPRAWIENIA 
+	if (baza.size() == 0){
+		// zg³aszanie wyj¹tku by nie odnosiæ siê do pustych wskaŸników(iterator not deferencable) 
+		throw ExBrakOsoby();
+	}
 	auto it = baza.begin();
 	vector <osoba> wynik;
 	switch (mode)
 	{
 
-		for (it; it < baza.end(); it++)
+		for (it; it < baza.end()-1; it++)
 		{
 	case 0:
 		if (it->wiek < wiek)
@@ -159,6 +162,9 @@ vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
 			break;
 		}
 		}
+	}
+	if (wynik.size()==0){
+		throw ExBrakOsoby();
 	}
 		return wynik;
 
