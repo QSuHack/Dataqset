@@ -5,6 +5,7 @@
 using namespace std;
 std::vector<osoba> baza;
 
+
 void wstep(){
 	cout << "Witaj w programie kontroli populacji.\nInformacje dostarcza Minsterstwo Prawdy.\n";
 	// ci¹g dalszy fabu³y
@@ -53,10 +54,13 @@ bool zaloguj_jako_wielki_brat(){
 	return false;
 }
 void pokaz_menu(){
+	
 	cout << " Tu bêdzie menu";
-	cout << "Dostêpne opcje: \n1.Wczytaj dane z pliku.\n2.Poka¿ bazê danych.\n3.Edytuj bazê danych";
+	cout << "\nDostêpne opcje: \n1.Wczytaj dane z pliku.\n2.Poka¿ bazê danych.\n3.Edytuj bazê danych"
+		<< "\n4. \n5.\n6.\n7.\n8.\n9.";
 	int position = 0;
 	while (true){
+	Sleep(100);  // blokowanie multi-wywo³añ funkcji przy jednym wciœniêciu klawisza
 		if (GetKeyState(VK_UP)<0)
 	{
 		cout<< "up";
@@ -71,14 +75,14 @@ void pokaz_menu(){
 		cout << "1opcja";
 		
 		pobierz_dane(baza);
-		cout << "Wczytano bazê.";
+		cout << "Wczytano bazê.\n";
 
 	}
 	if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
-		cout << "2opcja";
+		cout << "2opcja\n";
 		pokaz_baze(baza);
-
-		_getch();/// getch() wywala siê na ryj
+		
+		system("pause");/// getch() wywala siê na ryj
 		system("cls");
 		pokaz_menu();
 	}
@@ -90,12 +94,12 @@ void pokaz_menu(){
 		menu_wyswietl_osoby_w_wieku();
 	}
 	if (GetKeyState(0x35)<0 || GetKeyState(VK_NUMPAD5)<0){
-		cout << "5opcja";
+		//sort_menu(baza);
 	}
 	if (GetKeyState(0x36)<0 || GetKeyState(VK_NUMPAD6)<0){
 		cout << "6opcja";
 	}
-	Sleep(100);  // blokowanie multi-wywo³añ funkcji przy jednym wciœniêciu klawisza
+	
 	}
 }
 
@@ -104,14 +108,30 @@ void edytuj_baze(vector <osoba> &baza){
 	while(true){
 		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0)
 		{
+			Sleep(200);
 			std::fflush(stdin);
 			dodaj_osobe(baza);
 			
 		}
 		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0)
 		{
-			cout << "STH";
-			//usun_osobe(baza, osoba_do_usuniecia);
+			cout << "ZnajdŸ osobê do usuniêcia.\nPodaj imiê LUB nazwisko LUB PESEL:";
+			string osoba_do_usuniecia;
+			vector <osoba> zestaw;
+			getline(cin, osoba_do_usuniecia);
+			vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
+			pokaz_vector(zestaw);
+			cout << "Podaj numer osoby: ";
+			try
+			{
+				usun_osobe(baza, zestaw.at(_getch() - 1));
+			}
+			catch (out_of_range){
+				cout << " Niepowiod³o siê. Z³y zakres. \n";
+			}
+			catch (ExBrakOsoby& e){
+				cout << e.what();
+			}
 		}
 		if (GetKeyState(VK_ESCAPE)<0){
 			Sleep(100);

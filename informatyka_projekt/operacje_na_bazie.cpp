@@ -1,5 +1,7 @@
 #pragma once
 #include "include.h"
+#include <Windows.h>
+#include <limits>
 using namespace std;
 osoba znajdz_poj_osobe(std::vector<osoba>& baza, std::string szukana_wartosc)
 {
@@ -9,6 +11,7 @@ osoba znajdz_poj_osobe(std::vector<osoba>& baza, std::string szukana_wartosc)
 		return x;
 	}
 	}
+	throw ExBrakOsoby();
 }
 
 std::vector<osoba> znajdz_zestaw_osob(std::vector<osoba>& baza, std::string szukana_wartosc)
@@ -22,6 +25,9 @@ std::vector<osoba> znajdz_zestaw_osob(std::vector<osoba>& baza, std::string szuk
 			a = x;
 			zestaw.push_back(a);
 		}
+	}
+	if(zestaw.size==0 ){
+		throw ExBrakOsoby();
 	}
 	return zestaw;
 }
@@ -40,10 +46,10 @@ void usun_osobe(vector <osoba> &baza, osoba os){
 	{
 		if (*it == os){
 			baza.erase(it);
-			break;
+			return;
 		}
 	}
-	
+	throw ExBrakOsoby();
 }
 
 
@@ -86,6 +92,9 @@ void dodaj_osobe(vector <osoba> &baza)
 	osoba os;
 	string os_tmp;
 	bool flag = false;
+/*	#undef max
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	_getch();*/
 	cout << "\nPodaj imiê: ";
 	cin >> os.imie;
 	cout << "\nPodaj nazwisko: ";
