@@ -8,7 +8,7 @@ std::vector<osoba> baza;
 
 void wstep(){
 	cout << "Witaj w programie kontroli populacji.\nInformacje dostarcza Minsterstwo Prawdy.\n";
-	// ci¹g dalszy fabu³y
+	//TODO ci¹g dalszy fabu³y
 }
 void ranga(){
 	cout << "Zaloguj siê: \n" << "Wybierz rangê: \n1.W I E L K I  B R A T\n2.Winston\n3.Prol\n";
@@ -48,7 +48,7 @@ bool zaloguj_jako_wielki_brat(){
 	cout << "Podaj has³o dostêpu: ";
 	cin >> haslo;
 	if (haslo==poprawne){
-	// tu daæ komunikat powitalny i ascii oko saurona or other else
+	//TODO tu daæ komunikat powitalny i ascii oko saurona or other else
 		return true;
 	}
 	return false;
@@ -91,7 +91,7 @@ void pokaz_menu(){
 		edytuj_baze(baza);
 	}
 	if (GetKeyState(0x34)<0 || GetKeyState(VK_NUMPAD4)<0){
-		menu_wyswietl_osoby_w_wieku(); // <- tu daæ menu modu³u statystyk i przenieœæ to wywo³anie tam
+		menu_wyswietl_osoby_w_wieku(); //TODO <- tu daæ menu modu³u statystyk i przenieœæ to wywo³anie tam
 	}
 	if (GetKeyState(0x35)<0 || GetKeyState(VK_NUMPAD5)<0){
 		//sort_menu(baza);
@@ -127,13 +127,35 @@ void edytuj_baze(vector <osoba> &baza){
 			usun_osobe(baza,(zestaw.at((_getch() -49))));
 			}
 			catch (out_of_range){
-				cout << " Niepowiod³o siê. Z³y zakres. \n";
+				cout << " Nie powiod³o siê. Z³y zakres. \n";
 			}
 			catch (ExBrakOsoby& e){
 				cout << e.what();
 			}
 			cout << "Usuniêto.";
 			break;
+		}
+		if (GetKeyState(0x33)<0 || GetKeyState(VK_NUMPAD3)<0){
+
+
+			cout << "ZnajdŸ osobê do zmiany.\nPodaj imiê LUB nazwisko LUB PESEL:";
+			string osoba_do_usuniecia;
+			getline(cin, osoba_do_usuniecia);
+			try
+			{
+				vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
+				pokaz_vector(zestaw);
+				cout << "Podaj numer osoby: ";
+				edytuj_rekord(zestaw.at((_getch() - 49))); //TODO tu zmienia zestaw a nie baze DO Zmiany
+			}
+			catch (out_of_range)
+			{
+				cout << " Nie powiod³o siê. Z³y zakres. \n";
+			}
+			catch (ExBrakOsoby& e)
+			{
+				cout << e.what();
+			}
 		}
 		if (GetKeyState(VK_ESCAPE)<0){
 			Sleep(100);
@@ -167,3 +189,4 @@ void menu_wyswietl_osoby_w_wieku(){
 	}
 
 }
+

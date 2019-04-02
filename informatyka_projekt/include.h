@@ -71,6 +71,7 @@ void edytuj_baze(std::vector<osoba>& baza);
 void menu_wyswietl_osoby_w_wieku();
 std::vector<osoba> kopia_bazy(std::vector<osoba> baza);
 std::vector<osoba> wyswietl_osoby_w_wieku(int mode, std::vector<osoba> baza, int wiek);
+void edytuj_rekord(osoba & os);
 template <typename T, typename A>
 void pokaz_vector(vector <T, A> vector_)
 {

@@ -170,7 +170,38 @@ vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
 
 }
 
-//vector <osoba> szyfruj_baze(vector<osoba> baza, string haslo){
+//TODO vector <osoba> szyfruj_baze(vector<osoba> baza, string haslo){
 	
 
 //}
+
+void edytuj_rekord(osoba &os)
+{
+	cout << "\nObecne imiê: " << os.imie << "\nPodaj nowe imiê: ";
+	cin >> os.imie;
+	cout << "\nObecne nazwisko: " << os.nazwisko << "\nPodaj nowe nazwisko: ";
+	cin >> os.nazwisko;
+	cout << "Czy chcesz zachowaæ numer pesel? (T/N)";
+	if (_getch() == 'N')
+	{
+		bool flag = false;
+		string os_tmp;
+		while (!flag)
+		{
+
+			cout << "\nPodaj PESEL: ";
+			cin >> os_tmp;
+			flag = check_pesel(os_tmp);
+			if (!flag)
+			{
+				cout << "\nNiepoprawny format, spróbuj jeszcze raz!";
+			}
+		}
+		os.PESEL = os_tmp;
+		cout << "\nPESEL zmieniono.";
+	}
+	cout << "\nPodaj miasto: ";
+	getline(cin, os.miasto);
+	cout << "\nZmienianie rekordu zakoñczono.";
+
+}
