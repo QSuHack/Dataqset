@@ -26,7 +26,7 @@ std::vector<osoba> znajdz_zestaw_osob(std::vector<osoba>& baza, std::string szuk
 			zestaw.push_back(a);
 		}
 	}
-	if(zestaw.size==0 ){
+	if(zestaw.size()==0 ){
 		throw ExBrakOsoby();
 	}
 	return zestaw;

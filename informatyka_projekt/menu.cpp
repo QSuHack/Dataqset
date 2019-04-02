@@ -117,14 +117,13 @@ void edytuj_baze(vector <osoba> &baza){
 		{
 			cout << "ZnajdŸ osobê do usuniêcia.\nPodaj imiê LUB nazwisko LUB PESEL:";
 			string osoba_do_usuniecia;
-			vector <osoba> zestaw;
 			getline(cin, osoba_do_usuniecia);
+			try
+			{
 			vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
 			pokaz_vector(zestaw);
 			cout << "Podaj numer osoby: ";
-			try
-			{
-				usun_osobe(baza, zestaw.at(_getch() - 1));
+			usun_osobe(baza,(zestaw.at((_getch() -49))));
 			}
 			catch (out_of_range){
 				cout << " Niepowiod³o siê. Z³y zakres. \n";
@@ -132,6 +131,8 @@ void edytuj_baze(vector <osoba> &baza){
 			catch (ExBrakOsoby& e){
 				cout << e.what();
 			}
+			cout << "Usuniêto.";
+			break;
 		}
 		if (GetKeyState(VK_ESCAPE)<0){
 			Sleep(100);
