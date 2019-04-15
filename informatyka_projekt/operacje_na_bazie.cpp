@@ -78,14 +78,22 @@ bool pobierz_dane(vector <osoba> &baza)
 }
 
 
-bool ustaw_pola(vector <osoba> &baza){
+bool ustaw_pola2(vector <osoba> &baza){
 	for (auto x : baza){
-		x.data_urodzenia = x.wyluskaj_date_urodzenia(x.PESEL);
-		x.wiek = x.wylicz_wiek();
+		
+		x.wyluskaj_date_urodzenia(x.PESEL);x.wylicz_wiek();
+		cout << x.zwroc_wiek() << " ";
 	}
 	return true;
 }
+bool ustaw_pola(vector <osoba>& baza) {
+	for (vector<osoba>::iterator it = baza.begin(); it < baza.end();it++) {
 
+		it->wyluskaj_date_urodzenia(it->PESEL); it->wylicz_wiek();
+		cout << it->zwroc_wiek() << " ";
+	}
+	return true;
+}
 
 void dodaj_osobe(vector <osoba> &baza)
 {
@@ -140,28 +148,33 @@ vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
 	vector <osoba> wynik;
 	switch (mode)
 	{
-
-		for (it; it < baza.end()-1; it++)
-		{
 	case 0:
-		if (it->wiek < wiek)
+		for (it; it < baza.end(); it++)
 		{
-			wynik.push_back(*it);
-			break;
+			if (it->zwroc_wiek() < wiek)
+			{
+				wynik.push_back(*it);
+			}
 		}
+		break;
 	case 1:
-		if (it->wiek == wiek)
+		for (it; it < baza.end(); it++)
 		{
-			wynik.push_back(*it);
-			break;
+			if (it->zwroc_wiek() == wiek)
+			{
+				wynik.push_back(*it);
+			}
 		}
+		break;
 	case 2:
-		if (it->wiek > wiek)
+		for (it; it < baza.end(); it++)
 		{
-			wynik.push_back(*it);
-			break;
+			if (it->zwroc_wiek() > wiek)
+			{
+				wynik.push_back(*it);
+			}
 		}
-		}
+		break;
 	}
 	if (wynik.size()==0){
 		throw ExBrakOsoby();
