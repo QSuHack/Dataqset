@@ -1,16 +1,17 @@
 #pragma once
 #include "include.h"
 #include <Windows.h>
-
+#include <iomanip>
 using namespace std;
 std::vector<osoba> baza;
 
+
 void wstep(){
 	cout << "Witaj w programie kontroli populacji.\nInformacje dostarcza Minsterstwo Prawdy.\n";
-	// ciÄ…g dalszy fabuÅ‚y
+	//TODO ci¹g dalszy fabu³y
 }
 void ranga(){
-	cout << "Zaloguj siÄ™: \n" << "Wybierz rangÄ™: \n1.W I E L K I  B R A T\n2.Winston\n3.Prol\n";
+	cout << "Zaloguj siê: \n" << "Wybierz rangê: \n1.W I E L K I  B R A T\n2.Winston\n3.Prol\n";
 	_getch();
 		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0)
 		{
@@ -21,7 +22,7 @@ void ranga(){
 			}
 			else
 			{
-				cout << "PrÃ³bowaÅ‚eÅ› podszyÄ‡ siÄ™ pod Wielkiego Brata, lepiej sam siÄ™ zgÅ‚oÅ› do Ministerstwa MiÅ‚oÅ›ci!\n";
+				cout << "Próbowa³eœ podszyæ siê pod Wielkiego Brata, lepiej sam siê zg³oœ do Ministerstwa Mi³oœci!\n";
 			}
 		}
 		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0){
@@ -29,13 +30,13 @@ void ranga(){
 		}
 
 		if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0){
-			cout << "Brak dostÄ™pu. WeÅº, idÅº siÄ™ zajmij czymÅ› innym, ok? \n";
+			cout << "Brak dostêpu. WeŸ, idŸ siê zajmij czymœ innym, ok? \n";
 		}
 		if (GetKeyState(VK_ESCAPE)<0){
 			cout << "koniec";
 		}
 		else{
-			cout << "bÅ‚Ä…d";
+			cout << "b³¹d";
 			
 			ranga();
 		}
@@ -44,25 +45,25 @@ bool zaloguj_jako_wielki_brat(){
 	system("cls");
 	string haslo;
 	string poprawne = "BB";
-	cout << "Podaj hasÅ‚o dostÄ™pu: ";
+	cout << "Podaj has³o dostêpu: ";
 	cin >> haslo;
 	if (haslo==poprawne){
-
-	// tu daÄ‡ komunikat powitalny i ascii oko saurona
+	//TODO tu daæ komunikat powitalny i ascii oko saurona or other else
 		return true;
 	}
 	return false;
 }
 void pokaz_menu(){
-
-	cout << " Tu bÄ™dzie menu";
-	cout << "dostepne opcje: 1-in ,2||3-out";
-
+	
+	cout << " Tu bêdzie menu";
+	cout << "\nDostêpne opcje: \n1.Wczytaj dane z pliku.\n2.Poka¿ bazê danych.\n3.Edytuj bazê danych"
+		<< "\n4. \n5.\n6.\n7.\n8.\n9.";
 	int position = 0;
 	while (true){
+	Sleep(100);  // blokowanie multi-wywo³añ funkcji przy jednym wciœniêciu klawisza
 		if (GetKeyState(VK_UP)<0)
 	{
-		cout<< "up";
+		cout<< "E";
 
 	}
 	if (GetKeyState(VK_ESCAPE) < 0)
@@ -74,15 +75,14 @@ void pokaz_menu(){
 		cout << "1opcja";
 		
 		pobierz_dane(baza);
-		cout << "Wczytano bazÄ™.";
+		cout << "Wczytano bazê.\n";
 
 	}
 	if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
-		cout << "2opcja";
+		cout << "2opcja\n";
 		pokaz_baze(baza);
-		fflush(stdin);
-		system("pause");
-		_getch();/// getch()
+		
+		system("pause");/// getch() wywala siê na ryj
 		system("cls");
 		pokaz_menu();
 	}
@@ -91,31 +91,71 @@ void pokaz_menu(){
 		edytuj_baze(baza);
 	}
 	if (GetKeyState(0x34)<0 || GetKeyState(VK_NUMPAD4)<0){
-		menu_wyswietl_osoby_w_wieku();
+		menu_wyswietl_osoby_w_wieku(); //TODO <- tu daæ menu modu³u statystyk i przenieœæ to wywo³anie tam
 	}
 	if (GetKeyState(0x35)<0 || GetKeyState(VK_NUMPAD5)<0){
-		cout << "5opcja";
+		//sort_menu(baza);
 	}
 	if (GetKeyState(0x36)<0 || GetKeyState(VK_NUMPAD6)<0){
 		cout << "6opcja";
 	}
-	Sleep(100);  // blokowanie multi-wywoÅ‚aÅ„ funkcji przy jednym wciÅ›niÄ™ciu klawisza
+	
 	}
 }
 
 void edytuj_baze(vector <osoba> &baza){
-	cout << "Wybierz co chcesz zedytowaï¿½: \n1.Dodaj osobï¿½.\n2.Usuï¿½ osobï¿½\n3.Edytuj rekord\n";
+	cout << "Wybierz co chcesz zedytowaæ: \n1.Dodaj osobê.\n2.Usuñ osobê\n3.Edytuj rekord\n";
 	while(true){
 		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0)
 		{
+			Sleep(200);
 			std::fflush(stdin);
 			dodaj_osobe(baza);
 			
 		}
 		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0)
 		{
-			cout << "STH";
-			//usun_osobe(baza, osoba_do_usuniecia);
+			cout << "========EWAPORACJA========\n";
+			cout << "ZnajdŸ osobê do usuniêcia.\nPodaj imiê LUB nazwisko LUB PESEL:";
+			string osoba_do_usuniecia;
+			getline(cin, osoba_do_usuniecia);
+			try
+			{
+			vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
+			pokaz_vector(zestaw);
+			cout << "Podaj numer osoby: ";
+			usun_osobe(baza,(zestaw.at((_getch() -49))));
+			}
+			catch (out_of_range){
+				cout << " Nie powiod³o siê. Z³y zakres. \n";
+			}
+			catch (ExBrakOsoby& e){
+				cout << e.what();
+			}
+			cout << "Usuniêto.";
+			break;
+		}
+		if (GetKeyState(0x33)<0 || GetKeyState(VK_NUMPAD3)<0){
+
+
+			cout << "ZnajdŸ osobê do zmiany.\nPodaj imiê LUB nazwisko LUB PESEL:";
+			string osoba_do_usuniecia;
+			getline(cin, osoba_do_usuniecia);
+			try
+			{
+				vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
+				pokaz_vector(zestaw);
+				cout << "Podaj numer osoby: ";
+				edytuj_rekord(zestaw.at((_getch() - 49))); //TODO tu zmienia zestaw a nie baze DO Zmiany
+			}
+			catch (out_of_range)
+			{
+				cout << " Nie powiod³o siê. Z³y zakres. \n";
+			}
+			catch (ExBrakOsoby& e)
+			{
+				cout << e.what();
+			}
 		}
 		if (GetKeyState(VK_ESCAPE)<0){
 			Sleep(100);
@@ -132,19 +172,21 @@ void menu_wyswietl_osoby_w_wieku(){
 	int wiek_;
 	cout << "Podaj wiek:";
 	cin >> wiek_;
-	cout << "0.Mï¿½odsze\n1.Dokï¿½adnie w tym wieku\n2.Starsze";
+	cout << "0.M³odsze\n1.Dok³adnie w tym wieku\n2.Starsze";
 	while (true)
 	{
-		if (GetKeyState(0x31)<0 || GetKeyState(VK_NUMPAD1)<0){
-			wyswietl_osoby_w_wieku(0, baza, wiek_);
+		if (GetKeyState(0x30)<0 || GetKeyState(VK_NUMPAD0)<0){
+		pokaz_vector(wyswietl_osoby_w_wieku(0, baza, wiek_));
 		}
 		if (GetKeyState(0x31)<0||GetKeyState(VK_NUMPAD1)<0){
-			wyswietl_osoby_w_wieku(1, baza, wiek_);
+		pokaz_vector(	wyswietl_osoby_w_wieku(1, baza, wiek_));
 			break;
 		}
 		if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
-			wyswietl_osoby_w_wieku(2, baza, wiek_);
+		pokaz_vector(wyswietl_osoby_w_wieku(2, baza, wiek_));
+			break;
 		}
 	}
 
 }
+
