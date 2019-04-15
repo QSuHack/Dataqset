@@ -90,7 +90,7 @@ bool ustaw_pola(vector <osoba>& baza) {
 	for (vector<osoba>::iterator it = baza.begin(); it < baza.end();it++) {
 
 		it->wyluskaj_date_urodzenia(it->PESEL); it->wylicz_wiek();
-		cout << it->zwroc_wiek() << " ";
+		
 	}
 	return true;
 }
@@ -195,6 +195,7 @@ void edytuj_rekord(osoba &os)
 	cout << "\nObecne nazwisko: " << os.nazwisko << "\nPodaj nowe nazwisko: ";
 	cin >> os.nazwisko;
 	cout << "Czy chcesz zachowaæ numer pesel? (T/N)";
+	
 	if (_getch() == 'N')
 	{
 		bool flag = false;
@@ -214,6 +215,9 @@ void edytuj_rekord(osoba &os)
 		cout << "\nPESEL zmieniono.";
 	}
 	cout << "\nPodaj miasto: ";
+	#undef max
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 	getline(cin, os.miasto);
 	cout << "\nZmienianie rekordu zakoñczono.";
 

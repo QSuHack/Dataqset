@@ -13,13 +13,13 @@ int main()
 	std::vector<osoba> baza;
 	setlocale(LC_ALL, "polish");
 	
-	//wstep();
-	//ranga();
+	wstep();
+	ranga();
 	auto start = std::chrono::system_clock::now();
 
 	
 	cout<<pobierz_dane(baza);
-	cout << "\n\n\nkurwa";
+	
 	for (auto x: baza)
 	{
 

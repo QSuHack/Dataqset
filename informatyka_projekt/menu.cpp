@@ -146,7 +146,16 @@ void edytuj_baze(vector <osoba> &baza){
 				vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
 				pokaz_vector(zestaw);
 				cout << "Podaj numer osoby: ";
-				edytuj_rekord(zestaw.at((_getch() - 49))); //TODO tu zmienia zestaw a nie baze DO Zmiany
+				osoba tmp = zestaw.at((_getch() - 49));
+				auto it = baza.begin();
+				for (it ; it < baza.end(); it++) {
+					if (tmp == *it) {
+						break;
+					}
+				}
+				edytuj_rekord(*it); //TODO tu zmienia zestaw a nie baze DO Zmiany 
+				//Dobra chyba ju¿ dzia³a
+				
 			}
 			catch (out_of_range)
 			{
