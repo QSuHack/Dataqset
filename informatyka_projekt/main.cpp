@@ -31,11 +31,14 @@ void cityStats(vector<osoba>& baza)
 			c++;
 		else
 		{
-			cout << p.miasto << " - liczba mieszkañców to: " << c << endl;
+			cout << p.miasto << " - liczba mieszkaÃ±cÃ³w to: " << c << endl;
 			c = 1;
 		}
 	}
 }
+
+using namespace std;
+
 
 int main()
 {
@@ -45,6 +48,7 @@ int main()
 	pobierz_dane(baza);	
 	wstep();
 	//ranga();
+
 	auto start = std::chrono::system_clock::now();
 
 	
@@ -70,7 +74,8 @@ int main()
 	}
 	pokaz_baze(baza);
 	cout << "USUWANIE"<<"\n\n\n";
-	usun_osobe(baza, znajdz_poj_osobe(baza, "B³a¿ewicz"));
+
+	usun_osobe(baza, znajdz_poj_osobe(baza, "BÂ³aÂ¿ewicz"));
 	zapisz(baza, "archiwum", true);
 	_getch();*/
 	return 0;
