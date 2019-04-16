@@ -2,7 +2,7 @@
 #include "include.h"
 using namespace std;
 
-// tu funkcje nie zwi�zane ani bezpo�rednio z baz� ani z menu
+// tu funkcje nie zwiï¿½zane ani bezpoï¿½rednio z bazï¿½ ani z menu
 bool check_pesel(std::string pesel){
 if (pesel.length() != 11){
 	return false;
@@ -17,7 +17,9 @@ else{
 	return false;
 }
 }
-std::ostream& operator<< (std::ostream& out, osoba p) // TODO TU MO�NA POPRAWI� WY�WIETLANIE OSOBY
+
+std::ostream& operator<< (std::ostream& out, osoba p) // TODO TU MO¯NA POPRAWIÆ WYŒWIETLANIE OSOBY
+
 {
 	out << p.imie << " " << p.nazwisko << " " << p.PESEL << " " << p.miasto << " wiek:" << p.zwroc_wiek();
 	return out;

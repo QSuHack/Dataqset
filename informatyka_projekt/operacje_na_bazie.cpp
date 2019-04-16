@@ -105,15 +105,17 @@ void dodaj_osobe(vector <osoba> &baza)
 {
 	osoba os;
 	string os_tmp;
+
 	bool flag = false;
 	#undef max
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	_getch();
-	cout << "\nPodaj imiê: ";
+	cout << "\nPodaj imiÃª: ";
 	cin >> os.imie;
 	cout << "\nPodaj nazwisko: ";
-	cin >> os.nazwisko; // cin wycina bia³e znaki wiêc nie zapisze pustego.
+	cin >> os.nazwisko; // cin wycina biaÂ³e znaki wiÃªc nie zapisze pustego.
 	flag = false;
+
 	while (!flag)
 	{
 		cout << "\nPodaj PESEL: ";
@@ -121,7 +123,7 @@ void dodaj_osobe(vector <osoba> &baza)
 		flag = check_pesel(os_tmp);
 		if (!flag)
 		{
-			cout << "Niepoprawny format, spróbuj jeszcze raz!";
+			cout << "Niepoprawny format, sprÃ¯Â¿Â½buj jeszcze raz!";
 		}
 	}
 	cout << "Podaj miasto: ";
@@ -148,7 +150,7 @@ void zapisz(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=true){
 
 vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
 	if (baza.size() == 0){
-		// zg³aszanie wyj¹tku by nie odnosiæ siê do pustych wskaŸników(iterator not deferencable) 
+		// zgÂ³aszanie wyjÂ¹tku by nie odnosiÃ¦ siÃª do pustych wskaÅ¸nikÃ³w(iterator not deferencable) 
 		throw ExBrakOsoby();
 	}
 	auto it = baza.begin();
@@ -195,13 +197,14 @@ vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
 
 //}
 
+
 void edytuj_rekord(osoba &os)
 {
-	cout << "\nObecne imiê: " << os.imie << "\nPodaj nowe imiê: ";
+	cout << "\nObecne imiÃª: " << os.imie << "\nPodaj nowe imiÃª: ";
 	cin >> os.imie;
 	cout << "\nObecne nazwisko: " << os.nazwisko << "\nPodaj nowe nazwisko: ";
 	cin >> os.nazwisko;
-	cout << "Czy chcesz zachowaæ numer pesel? (T/N)";
+	cout << "Czy chcesz zachowaÃ¦ numer pesel? (T/N)";
 	
 	if (_getch() == 'N')
 	{
@@ -215,7 +218,7 @@ void edytuj_rekord(osoba &os)
 			flag = check_pesel(os_tmp);
 			if (!flag)
 			{
-				cout << "\nNiepoprawny format, spróbuj jeszcze raz!";
+				cout << "\nNiepoprawny format, sprÃ³buj jeszcze raz!";
 			}
 		}
 		os.PESEL = os_tmp;
@@ -226,7 +229,7 @@ void edytuj_rekord(osoba &os)
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	getline(cin, os.miasto);
-	cout << "\nZmienianie rekordu zakoñczono.";
+	cout << "\nZmienianie rekordu zakoÃ±czono.";
 
 }
 

@@ -8,13 +8,16 @@
 #include <fstream>
 #include <string>
 #include<iterator>
+
 #include <cstdio>
 using namespace std;
+
 void wstep();
 void ranga();
 bool zaloguj_jako_wielki_brat();
 void pokaz_menu();
 extern bool administrator;
+
 
 
 tm get_current_time();
@@ -82,6 +85,33 @@ void usun_osobe(std::vector <osoba> &baza, osoba os);
 void edytuj_baze(std::vector<osoba>& baza);
 void menu_wyswietl_osoby_w_wieku();
 std::vector<osoba> kopia_bazy(std::vector<osoba> baza);
+
+void output(const std::vector<osoba>&dat);
+bool nameAtoZSortCondition(osoba &s1, osoba &s2);
+void sortByNameAtoZ(std::vector<osoba>&baza);
+bool nameZtoASortCondition(osoba &s1, osoba &s2);
+void sortByNameZtoA(std::vector<osoba>&baza);
+bool surnnameAtoZSortCondition(osoba &s1, osoba &s2);
+void sortBySurnameAtoZ(std::vector<osoba>&baza);
+bool surnnameZtoASortCondition(osoba &s1, osoba &s2);
+void sortBySurnameZtoA(std::vector<osoba>&baza);
+bool cityAtoZSortCondition(osoba &s1, osoba &s2);
+void sortByCityAtoZ(std::vector<osoba>&baza);
+bool cityZtoASortCondition(osoba &s1, osoba &s2);
+void sortByCityZtoA(std::vector<osoba>&baza);
+bool ageYtoOSortCondition(osoba &s1, osoba &s2);
+void sortByAgeYtoO(std::vector<osoba>&baza);
+bool ageOtoYSortCondition(osoba &s1, osoba &s2);
+void sortByAgeOtoY(std::vector<osoba>&baza);
+void sort_menu(std::vector<osoba>&baza);
+
+
+
+void countUnderage(std::vector<osoba>&baza);
+void cityStats(std::vector<osoba>&baza);
+void countByGender(std::vector<osoba>&baza);
+void oldestAndYoungest(std::vector<osoba>&baza);
+void averageAge(std::vector<osoba>&baza);
 std::vector<osoba> wyswietl_osoby_w_wieku(int mode, std::vector<osoba> baza, int wiek);
 void edytuj_rekord(osoba & os);
 template <typename T, typename A>
