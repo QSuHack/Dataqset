@@ -84,10 +84,10 @@ void dodaj_osobe(vector <osoba> &baza)
 {
 	osoba os;
 	string os_tmp;
-	cout << "\nPodaj imiê: ";
+	cout << "\nPodaj imiÄ™: ";
 	cin >> os.imie;
 	cout << "\nPodaj nazwisko: ";
-	cin >> os.nazwisko; // TODO sprawdziæ czy nie puste etc.
+	cin >> os.nazwisko; // TODO sprawdziï¿½ czy nie puste etc.
 	bool flag = false;
 	while (!flag)
 	{
@@ -96,7 +96,7 @@ void dodaj_osobe(vector <osoba> &baza)
 		flag = check_pesel(os_tmp);
 		if (!flag)
 		{
-			cout << "Niepoprawny format, spróbuj jeszcze raz!";
+			cout << "Niepoprawny format, sprï¿½buj jeszcze raz!";
 		}
 	}
 	cout << "Podaj miasto: ";
@@ -127,9 +127,3 @@ void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=fals
 
 
 
-
-
-//vector <osoba> szyfruj_baze(vector<osoba> baza, string haslo){
-	
-
-//}

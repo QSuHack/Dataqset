@@ -2,8 +2,8 @@
 #include "include.h"
 #include <chrono>
 #include <locale.h>
-#include<vector>
-#include<iterator>
+
+
 
 using namespace std;
 
@@ -12,9 +12,11 @@ int main()
 { 
 	vector<osoba>baza;
 	pobierz_dane(baza);
-	sort_menu(baza);
-	/*
+	cityStats(baza);
+
+	
 	setlocale(LC_ALL, "polish");
+	/*
 	wstep();
 	ranga();
 	auto start = std::chrono::system_clock::now();
@@ -38,7 +40,7 @@ int main()
 	}
 	pokaz_baze(baza);
 	cout << "USUWANIE"<<"\n\n\n";
-	usun_osobe(baza, znajdz_poj_osobe(baza, "B³a¿ewicz"));
+	usun_osobe(baza, znajdz_poj_osobe(baza, "BÅ‚aÅ¼ewicz"));
 	archiwizuj(baza, "archiwum", true);
 	_getch();
 	*/

@@ -83,4 +83,8 @@ void sortByCityZtoA(std::vector<osoba>&baza);
 void sort_menu(std::vector<osoba>&baza);
 
 
- 
+void countUnderage(std::vector<osoba>&baza);
+void cityStats(std::vector<osoba>&baza);
+void countByGender(std::vector<osoba>&baza);
+void oldestAndYoungest(std::vector<osoba>&baza);
+void averageAge(std::vector<osoba>&baza);

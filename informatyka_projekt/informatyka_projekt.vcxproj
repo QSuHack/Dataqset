@@ -149,6 +149,7 @@
     <ClCompile Include="operacje_na_bazie.cpp" />
     <ClCompile Include="sort.cpp" />
     <ClCompile Include="source.cpp" />
+    <ClCompile Include="stats.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="archiwum.txt" />
