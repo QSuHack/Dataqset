@@ -80,7 +80,12 @@ bool cityAtoZSortCondition(osoba &s1, osoba &s2);
 void sortByCityAtoZ(std::vector<osoba>&baza);
 bool cityZtoASortCondition(osoba &s1, osoba &s2);
 void sortByCityZtoA(std::vector<osoba>&baza);
+bool ageYtoOSortCondition(osoba &s1, osoba &s2);
+void sortByAgeYtoO(std::vector<osoba>&baza);
+bool ageOtoYSortCondition(osoba &s1, osoba &s2);
+void sortByAgeOtoY(std::vector<osoba>&baza);
 void sort_menu(std::vector<osoba>&baza);
+
 
 
 void countUnderage(std::vector<osoba>&baza);

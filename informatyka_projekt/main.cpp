@@ -10,12 +10,13 @@ using namespace std;
 
 int main()
 { 
+	setlocale(LC_ALL, "polish");
 	vector<osoba>baza;
 	pobierz_dane(baza);
 	cityStats(baza);
+	countByGender(baza);
 
 	
-	setlocale(LC_ALL, "polish");
 	/*
 	wstep();
 	ranga();

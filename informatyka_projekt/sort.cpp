@@ -60,7 +60,7 @@ void sortBySurnameZtoA(vector<osoba>&baza)
 
 bool cityAtoZSortCondition(osoba &s1, osoba &s2)
 {
-	return s1.miasto > s2.miasto;
+	return s1.miasto < s2.miasto;
 }
 
 void sortByCityAtoZ(vector<osoba>&baza)
@@ -70,13 +70,44 @@ void sortByCityAtoZ(vector<osoba>&baza)
 
 bool cityZtoASortCondition(osoba &s1, osoba &s2)
 {
-	return s1.miasto < s2.miasto;
+	return s1.miasto > s2.miasto;
 }
 
 void sortByCityZtoA(vector<osoba>&baza)
 {
 	sort(baza.begin(), baza.end(), cityZtoASortCondition);
 }
+
+bool ageYtoOSortCondition(osoba &s1, osoba &s2)
+{
+	if (s1.data_urodzenia.tm_year != s2.data_urodzenia.tm_year)
+		return s1.data_urodzenia.tm_year > s2.data_urodzenia.tm_year;
+	else if (s1.data_urodzenia.tm_mon != s2.data_urodzenia.tm_mon)
+		return s1.data_urodzenia.tm_mon > s2.data_urodzenia.tm_mon;
+	else if (s1.data_urodzenia.tm_mday != s2.data_urodzenia.tm_mday)
+		return s1.data_urodzenia.tm_mday > s2.data_urodzenia.tm_mday;
+}
+
+void sortByAgeYtoO(vector<osoba>&baza)
+{
+	sort(baza.begin(), baza.end(), ageYtoOSortCondition);
+}
+
+bool ageOtoYSortCondition(osoba &s1, osoba &s2)
+{
+	if (s1.data_urodzenia.tm_year != s2.data_urodzenia.tm_year)
+		return s1.data_urodzenia.tm_year < s2.data_urodzenia.tm_year;
+	else if (s1.data_urodzenia.tm_mon != s2.data_urodzenia.tm_mon)
+		return s1.data_urodzenia.tm_mon < s2.data_urodzenia.tm_mon;
+	else if (s1.data_urodzenia.tm_mday != s2.data_urodzenia.tm_mday)
+		return s1.data_urodzenia.tm_mday < s2.data_urodzenia.tm_mday;
+}
+
+void sortByAgeOtoY(vector<osoba>&baza)
+{
+	sort(baza.begin(), baza.end(), ageOtoYSortCondition);
+}
+
 
 
 
@@ -101,6 +132,12 @@ void sort_menu(vector<osoba>&baza)
 		pokaz_baze(baza);
 		break;
 	case 54:sortByCityZtoA(baza);
+		pokaz_baze(baza);
+		break;
+	case 55:sortByAgeYtoO(baza);
+		pokaz_baze(baza);
+		break;
+	case 56:sortByAgeOtoY(baza);
 		pokaz_baze(baza);
 		break;
 	}

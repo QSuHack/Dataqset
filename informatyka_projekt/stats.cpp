@@ -15,9 +15,9 @@ void countUnderage(vector<osoba>&baza) // Powinno działać dla poprawionego wyl
 
 void cityStats(vector<osoba>&baza)
 {
-	sortByCityZtoA(baza);
+	sortByCityAtoZ(baza);
 	int c = 1;
-	for(auto p:baza) //(auto x = baza.begin(); x != baza.end() - 1; ++x)
+	for(auto &p:baza) //(auto x = baza.begin(); x != baza.end() - 1; ++x)
 	{
 		if ((*(&p+1)).miasto == p.miasto)
 			c++;
@@ -73,22 +73,3 @@ void averageAge(vector<osoba>&baza)
 	}
 	cout << total / c<<endl;
 }
-
-/*
-int cityStats(vector<osoba>&baza)
-{
- sortByCityAtoZ(baza);
- vector<string>unique;
- vector<pair<string, int>>counter;
- unique_copy(baza.begin(), baza.end(), back_inserter(unique));
- for (string i:unique)
-	 counter.push_back(i,count(baza.begin(), baza.end(), i));
-}
-*/
-/*
-std::map<int, int> frequency;
-for (int i : baza)
-++frequency[i];
-for (const auto& e : frequency)
-std::cout << "Element " << e.first << " encountered " << e.second << " times\n";
-*/
