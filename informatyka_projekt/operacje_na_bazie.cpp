@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <limits>
 using namespace std;
+
 osoba znajdz_poj_osobe(std::vector<osoba>& baza, std::string szukana_wartosc)
 {
 	for (auto x : baza){
@@ -34,6 +35,10 @@ std::vector<osoba> znajdz_zestaw_osob(std::vector<osoba>& baza, std::string szuk
 
 
 void pokaz_baze(vector<osoba> baza){
+	if (baza.size() == 0) {
+		cout << "Baza jest pusta.";
+		return;
+	}
 	for (auto it = baza.begin(); it < baza.end(); it++)
 	{
 		cout << *it << "\n";
@@ -59,10 +64,10 @@ vector <osoba> kopia_bazy(vector<osoba>baza){
 }
 
 
-bool pobierz_dane(vector <osoba> &baza)
+bool pobierz_dane(vector <osoba> &baza, string nazwa_pliku)
 {
 	bool flaga = false;
-	ifstream plik("dane.txt");
+	ifstream plik(nazwa_pliku);
 	osoba c;
 	while (!plik.eof())
 	{
@@ -74,6 +79,7 @@ bool pobierz_dane(vector <osoba> &baza)
 		}
 	}
 	flaga = ustaw_pola(baza);
+	plik.close();
 	return flaga;
 }
 
@@ -100,9 +106,9 @@ void dodaj_osobe(vector <osoba> &baza)
 	osoba os;
 	string os_tmp;
 	bool flag = false;
-/*	#undef max
+	#undef max
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	_getch();*/
+	_getch();
 	cout << "\nPodaj imiê: ";
 	cin >> os.imie;
 	cout << "\nPodaj nazwisko: ";
@@ -124,7 +130,7 @@ void dodaj_osobe(vector <osoba> &baza)
 }
 
 
-void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=false){
+void zapisz(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=true){
 	fstream plikw;
 	if(kasuj){
 		plikw.open((nazwa_pliku + ".txt"), fstream::out | fstream::trunc);
@@ -137,6 +143,7 @@ void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=fals
 	{
 		plikw << *it <<"\n";
 	}
+	plikw.close();
 }
 
 vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
@@ -221,4 +228,10 @@ void edytuj_rekord(osoba &os)
 	getline(cin, os.miasto);
 	cout << "\nZmienianie rekordu zakoñczono.";
 
+}
+
+void archiwizuj(string nazwa_in, string nazwa_out) {
+	ifstream plik_in(nazwa_in);
+	ofstream plik_out(nazwa_out);
+	plik_out << plik_in.rdbuf();
 }

@@ -4,19 +4,21 @@
 #include <iomanip>
 using namespace std;
 std::vector<osoba> baza;
-
+bool administrator;
 
 void wstep(){
 	cout << "Witaj w programie kontroli populacji.\nInformacje dostarcza Minsterstwo Prawdy.\n";
 	//TODO ci¹g dalszy fabu³y
 }
 void ranga(){
+	administrator = false;
 	cout << "Zaloguj siê: \n" << "Wybierz rangê: \n1.W I E L K I  B R A T\n2.Winston\n3.Prol\n";
 	_getch();
 		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0)
 		{
 			if (zaloguj_jako_wielki_brat())
 			{
+				administrator = true;
 				pokaz_menu();
 				
 			}
@@ -53,53 +55,83 @@ bool zaloguj_jako_wielki_brat(){
 	}
 	return false;
 }
-void pokaz_menu(){
-	
+void pokaz_menu() {
+
 	cout << " Tu bêdzie menu";
 	cout << "\nDostêpne opcje: \n1.Wczytaj dane z pliku.\n2.Poka¿ bazê danych.\n3.Edytuj bazê danych"
-		<< "\n4. \n5.\n6.\n7.\n8.\n9.";
+		<< "\n4.Archiwizuj bazê danych.\n5.Posortuj bazê\n6.Statystyki\n7.Ostateczne rozwi¹zanie problemu ludzkoœci(usuñ bazê danych)\n8.Zapisz zmiany.\n9.Zaawansowane \nESC Wyjœcie.\n";
 	int position = 0;
-	while (true){
-	Sleep(100);  // blokowanie multi-wywo³añ funkcji przy jednym wciœniêciu klawisza
-		if (GetKeyState(VK_UP)<0)
-	{
-		cout<< "E";
+	while (true) {
+		Sleep(100);  // blokowanie multi-wywo³añ funkcji przy jednym wciœniêciu klawisza
+		if (GetKeyState(VK_UP) < 0)
+		{
+			cout << "E";
 
-	}
-	if (GetKeyState(VK_ESCAPE) < 0)
-	{
-		cout << "koniec";
-		break;
-	}
-	if (GetKeyState(0x31)<0|| GetKeyState(VK_NUMPAD1)<0){
-		cout << "1opcja";
-		
-		pobierz_dane(baza);
-		cout << "Wczytano bazê.\n";
+		}
+		if (GetKeyState(VK_ESCAPE) < 0)
+		{
+			cout << "koniec";
+			break;
+		}
+		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0) {
+			string tmp;
+			cout << "Podaj nazwê pliku, który chcesz otworzyæ (bez rozszerzenia): ";
+			cin >> tmp;
+			tmp += ".txt";
+			pobierz_dane(baza,tmp);
+			cout << "\nWczytano bazê.\n";
 
-	}
-	if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
-		cout << "2opcja\n";
-		pokaz_baze(baza);
-		
-		system("pause");/// getch() wywala siê na ryj
-		system("cls");
-		pokaz_menu();
-	}
-	if (GetKeyState(0x33)<0 || GetKeyState(VK_NUMPAD3)<0){
-		cout << "3opcja";
-		edytuj_baze(baza);
-	}
-	if (GetKeyState(0x34)<0 || GetKeyState(VK_NUMPAD4)<0){
-		menu_wyswietl_osoby_w_wieku(); //TODO <- tu daæ menu modu³u statystyk i przenieœæ to wywo³anie tam
-	}
-	if (GetKeyState(0x35)<0 || GetKeyState(VK_NUMPAD5)<0){
-		//sort_menu(baza);
-	}
-	if (GetKeyState(0x36)<0 || GetKeyState(VK_NUMPAD6)<0){
-		cout << "6opcja";
-	}
-	
+		}
+		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0) {
+			cout << "2opcja\n";
+			pokaz_baze(baza);
+
+			system("pause");/// getch() wywala siê na ryj
+			system("cls");
+			pokaz_menu();
+		}
+		if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0) {
+			cout << "3opcja";
+			Sleep(200);
+			edytuj_baze(baza);
+		}
+		if (GetKeyState(0x34) < 0 || GetKeyState(VK_NUMPAD4) < 0) {
+		}
+		if (GetKeyState(0x35) < 0 || GetKeyState(VK_NUMPAD5) < 0) {
+			//sort_menu(baza);
+		}
+		if (GetKeyState(0x36) < 0 || GetKeyState(VK_NUMPAD6) < 0) {
+			menu_wyswietl_osoby_w_wieku(); //TODO <- tu daæ menu modu³u statystyk i przenieœæ to wywo³anie tam
+
+		}
+		if (GetKeyState(0x37) < 0 || GetKeyState(VK_NUMPAD7) < 0) {
+			if (administrator == true) {
+				string nazwa_do_skasowania;
+				cout << "Podaj nazwe pliku: ";
+				cin >> nazwa_do_skasowania;
+				nazwa_do_skasowania += ".txt";
+				if (!remove(nazwa_do_skasowania.c_str()))
+				{
+					cout << "Powiod³o siê.";
+				}
+				else {
+					cout << "\nZ ¿alem zawiadamiamy, ¿e polecenia nie uda³o siê wykonaæ :(\n";
+				}
+			}
+				else {
+					cout << "\nBrak uprawnieñ. Zaloguj siê jako WIELKI BRAT. \n";
+				}
+			
+		}
+		if (GetKeyState(0x38) < 0 || GetKeyState(VK_NUMPAD8) < 0) {
+			string nazwa_pliku;
+			cout << "\nPodaj nazwê pliku, do którego chcesz zapisaæ: ";
+			cin >> nazwa_pliku;
+			zapisz(baza, nazwa_pliku, true);
+		}
+		if (GetKeyState(0x39) < 0 || GetKeyState(VK_NUMPAD9) < 0) {
+			//TODO tu wywo³am Pythona chyba, ¿e stwierdzê za du¿o b³edów
+		}
 	}
 }
 

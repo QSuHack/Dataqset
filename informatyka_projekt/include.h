@@ -8,11 +8,13 @@
 #include <fstream>
 #include <string>
 #include<iterator>
+#include <cstdio>
 using namespace std;
 void wstep();
 void ranga();
 bool zaloguj_jako_wielki_brat();
 void pokaz_menu();
+extern bool administrator;
 
 
 tm get_current_time();
@@ -71,10 +73,11 @@ osoba znajdz_poj_osobe(std::vector <osoba> &baza, std::string szukana_wartosc);
 std::vector<osoba> znajdz_zestaw_osob(std::vector <osoba> &baza, std::string szukana_wartosc);
 bool ustaw_pola(std::vector <osoba> &baza);
 void dodaj_osobe(std::vector<osoba>& baza);
-void archiwizuj(std::vector<osoba> baza, std::string nazwa_pliku, bool kasuj);
+void zapisz(std::vector<osoba> baza, std::string nazwa_pliku, bool kasuj);
+extern vector<osoba> baza;
 
 void pokaz_baze(std::vector<osoba> baza);
-bool pobierz_dane(std::vector <osoba> &baza);
+bool pobierz_dane(std::vector <osoba> &baza, string nazwa_pliku = "dane.txt");
 void usun_osobe(std::vector <osoba> &baza, osoba os);
 void edytuj_baze(std::vector<osoba>& baza);
 void menu_wyswietl_osoby_w_wieku();
@@ -98,3 +101,4 @@ struct ExBrakOsoby : public exception{
 		return "Nie znaleziono osoby.";
 	}
 };
+void archiwizuj(string nazwa_in, string nazwa_out);

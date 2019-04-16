@@ -5,20 +5,51 @@
 #include <locale.h>
 
 using namespace std;
+void output(const vector<osoba>& dat)
+{
+	for (vector<osoba>::const_iterator iter = dat.begin(); iter != dat.end(); iter++)
+		cout << (*iter).imie << "\t\t" << (*iter).nazwisko << "\t" << (*iter).miasto << (*iter).PESEL << "\t" << endl;
+	cout << endl;
+}
+bool cityZtoASortCondition(osoba& s1, osoba& s2)
+{
+	return s1.miasto > s2.miasto;
+}
+void sortByCityZtoA(vector<osoba>& baza)
+{
+	sort(baza.begin(), baza.end(), cityZtoASortCondition);
+	output(baza);
+}
 
-
+void cityStats(vector<osoba>& baza)
+{
+	sortByCityZtoA(baza);
+	int c = 1;
+	for (auto &p : baza) //(auto x = baza.begin(); x != baza.end() - 1; ++x)
+	{
+		if ((*(&p + 1)).miasto == p.miasto)
+			c++;
+		else
+		{
+			cout << p.miasto << " - liczba mieszkañców to: " << c << endl;
+			c = 1;
+		}
+	}
+}
 
 int main()
 {
-	std::vector<osoba> baza;
+
+	archiwizuj("dane.txt", "wyj.txt");
 	setlocale(LC_ALL, "polish");
-	
-	wstep();
-	ranga();
+	//pobierz_dane(baza);	
+	//wstep();
+	//ranga();
 	auto start = std::chrono::system_clock::now();
 
 	
-	cout<<pobierz_dane(baza);
+	pobierz_dane(baza);
+	cityStats(baza);
 	
 	for (auto x: baza)
 	{
@@ -40,7 +71,7 @@ int main()
 	pokaz_baze(baza);
 	cout << "USUWANIE"<<"\n\n\n";
 	usun_osobe(baza, znajdz_poj_osobe(baza, "B³a¿ewicz"));
-	archiwizuj(baza, "archiwum", true);
+	zapisz(baza, "archiwum", true);
 	_getch();*/
 	return 0;
 }

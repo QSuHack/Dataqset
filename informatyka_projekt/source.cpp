@@ -17,9 +17,9 @@ else{
 	return false;
 }
 }
-std::ostream& operator<< (std::ostream& out, osoba p) // TU MO¯NA POPRAWIÆ WYŒWIETLANIE OSOBY
+std::ostream& operator<< (std::ostream& out, osoba p) // TODO TU MO¯NA POPRAWIÆ WYŒWIETLANIE OSOBY
 {
-	out << p.imie << " " << p.nazwisko<<" " << p.PESEL<<" "<< p.miasto;
+	out << p.imie << " " << p.nazwisko << " " << p.PESEL << " " << p.miasto << " wiek:" << p.zwroc_wiek();
 	return out;
 }
 
