@@ -8,7 +8,7 @@ void countUnderage(vector<osoba>&baza) // Powinno działać dla poprawionego wyl
 {
 	int c = 0;
 	for (auto p : baza)
-		if (p.wiek < 18)
+		if (p.zwroc_wiek() < 18)
 			c++;
 	cout << c;
 }
@@ -47,19 +47,19 @@ void oldestAndYoungest(vector<osoba>&baza)
 	osoba oldest, youngest;
 	for (auto p : baza)
 	{
-		if (p.wiek < minim)
-			minim = p.wiek;
+		if (p.zwroc_wiek() < minim)
+			minim = p.zwroc_wiek();
 		    youngest = p;
 		    
 	}
 	for (auto p : baza)
 	{
-		if (p.wiek > maxim)
-			maxim = p.wiek;
+		if (p.zwroc_wiek() > maxim)
+			maxim = p.zwroc_wiek();
 		    oldest = p;
 	}
-	cout << "Najstarsza osoba (" << oldest.wiek << " lat) to " << oldest.imie << " " << oldest.nazwisko << endl;
-	cout << "Najmłodsza osoba (" << youngest.wiek << " lat) to " << youngest.imie << " " << youngest.nazwisko << endl;
+	cout << "Najstarsza osoba (" << oldest.zwroc_wiek() << " lat) to " << oldest.imie << " " << oldest.nazwisko << endl;
+	cout << "Najmłodsza osoba (" << youngest.zwroc_wiek() << " lat) to " << youngest.imie << " " << youngest.nazwisko << endl;
 }
 
 void averageAge(vector<osoba>&baza)
@@ -68,7 +68,7 @@ void averageAge(vector<osoba>&baza)
 	long long total=0;
 	for (auto p : baza)
 	{
-		total += p.wiek;
+		total += p.zwroc_wiek();
 		c++;
 	}
 	cout << total / c<<endl;

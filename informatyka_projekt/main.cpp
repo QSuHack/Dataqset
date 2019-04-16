@@ -5,37 +5,6 @@
 #include <locale.h>
 
 using namespace std;
-void output(const vector<osoba>& dat)
-{
-	for (vector<osoba>::const_iterator iter = dat.begin(); iter != dat.end(); iter++)
-		cout << (*iter).imie << "\t\t" << (*iter).nazwisko << "\t" << (*iter).miasto << (*iter).PESEL << "\t" << endl;
-	cout << endl;
-}
-bool cityZtoASortCondition(osoba& s1, osoba& s2)
-{
-	return s1.miasto > s2.miasto;
-}
-void sortByCityZtoA(vector<osoba>& baza)
-{
-	sort(baza.begin(), baza.end(), cityZtoASortCondition);
-	output(baza);
-}
-
-void cityStats(vector<osoba>& baza)
-{
-	sortByCityZtoA(baza);
-	int c = 1;
-	for (auto &p : baza) //(auto x = baza.begin(); x != baza.end() - 1; ++x)
-	{
-		if ((*(&p + 1)).miasto == p.miasto)
-			c++;
-		else
-		{
-			cout << p.miasto << " - liczba mieszkañców to: " << c << endl;
-			c = 1;
-		}
-	}
-}
 
 using namespace std;
 
