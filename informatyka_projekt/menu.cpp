@@ -1,27 +1,30 @@
 #pragma once
 #include "include.h"
 #include <Windows.h>
-
+#include <iomanip>
 using namespace std;
 std::vector<osoba> baza;
+bool administrator;
 
 void wstep(){
 	cout << "Witaj w programie kontroli populacji.\nInformacje dostarcza Minsterstwo Prawdy.\n";
-	// ciÄ…g dalszy fabuÅ‚y
+	//TODO ci¹g dalszy fabu³y
 }
 void ranga(){
-	cout << "Zaloguj siÄ™: \n" << "Wybierz rangÄ™: \n1.W I E L K I  B R A T\n2.Winston\n3.Prol\n";
+	administrator = false;
+	cout << "Zaloguj siê: \n" << "Wybierz rangê: \n1.W I E L K I  B R A T\n2.Winston\n3.Prol\n";
 	_getch();
 		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0)
 		{
 			if (zaloguj_jako_wielki_brat())
 			{
+				administrator = true;
 				pokaz_menu();
 				
 			}
 			else
 			{
-				cout << "PrÃ³bowaÅ‚eÅ› podszyÄ‡ siÄ™ pod Wielkiego Brata, lepiej sam siÄ™ zgÅ‚oÅ› do Ministerstwa MiÅ‚oÅ›ci!\n";
+				cout << "Próbowa³eœ podszyæ siê pod Wielkiego Brata, lepiej sam siê zg³oœ do Ministerstwa Mi³oœci!\n";
 			}
 		}
 		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0){
@@ -29,13 +32,13 @@ void ranga(){
 		}
 
 		if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0){
-			cout << "Brak dostÄ™pu. WeÅº, idÅº siÄ™ zajmij czymÅ› innym, ok? \n";
+			cout << "Brak dostêpu. WeŸ, idŸ siê zajmij czymœ innym, ok? \n";
 		}
 		if (GetKeyState(VK_ESCAPE)<0){
 			cout << "koniec";
 		}
 		else{
-			cout << "bÅ‚Ä…d";
+			cout << "b³¹d";
 			
 			ranga();
 		}
@@ -44,58 +47,187 @@ bool zaloguj_jako_wielki_brat(){
 	system("cls");
 	string haslo;
 	string poprawne = "BB";
-	cout << "Podaj hasÅ‚o dostÄ™pu: ";
+	cout << "Podaj has³o dostêpu: ";
 	cin >> haslo;
 	if (haslo==poprawne){
-	// tu daÄ‡ komunikat powitalny i ascii oko saurona
+	//TODO tu daæ komunikat powitalny i ascii oko saurona or other else
 		return true;
 	}
 	return false;
 }
-void pokaz_menu(){
-	cout << " Tu bÄ™dzie menu";
-	cout << "dostepne opcje: 1-in ,2||3-out";
+void pokaz_menu() {
+
+	cout << " Tu bêdzie menu";
+	cout << "\nDostêpne opcje: \n1.Wczytaj dane z pliku.\n2.Poka¿ bazê danych.\n3.Edytuj bazê danych"
+		<< "\n4.Archiwizuj bazê danych.\n5.Posortuj bazê\n6.Statystyki\n7.Ostateczne rozwi¹zanie problemu ludzkoœci(usuñ bazê danych)\n8.Zapisz zmiany.\n9.Zaawansowane \nESC Wyjœcie.\n";
 	int position = 0;
-	while (true){
-		if (GetKeyState(VK_UP)<0)
-	{
-		cout<< "up";
+	while (true) {
+		Sleep(100);  // blokowanie multi-wywo³añ funkcji przy jednym wciœniêciu klawisza
+		if (GetKeyState(VK_UP) < 0)
+		{
+			cout << "E";
 
-	}
-	if (GetKeyState(VK_ESCAPE) < 0)
-	{
-		cout << "koniec";
-		break;
-	}
-	if (GetKeyState(0x31)<0|| GetKeyState(VK_NUMPAD1)<0){
-		cout << "1opcja";
-		
-		pobierz_dane(baza);
-		cout << "Wczytano bazÄ™.";
+		}
+		if (GetKeyState(VK_ESCAPE) < 0)
+		{
+			cout << "koniec";
+			break;
+		}
+		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0) {
+			string tmp;
+			cout << "Podaj nazwê pliku, który chcesz otworzyæ (bez rozszerzenia): ";
+			cin >> tmp;
+			tmp += ".txt";
+			pobierz_dane(baza,tmp);
+			cout << "\nWczytano bazê.\n";
 
+		}
+		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0) {
+			cout << "2opcja\n";
+			pokaz_baze(baza);
+
+			system("pause");/// getch() wywala siê na ryj
+			system("cls");
+			pokaz_menu();
+		}
+		if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0) {
+			cout << "3opcja";
+			Sleep(200);
+			edytuj_baze(baza);
+		}
+		if (GetKeyState(0x34) < 0 || GetKeyState(VK_NUMPAD4) < 0) {
+		}
+		if (GetKeyState(0x35) < 0 || GetKeyState(VK_NUMPAD5) < 0) {
+			//sort_menu(baza);
+		}
+		if (GetKeyState(0x36) < 0 || GetKeyState(VK_NUMPAD6) < 0) {
+			menu_wyswietl_osoby_w_wieku(); //TODO <- tu daæ menu modu³u statystyk i przenieœæ to wywo³anie tam
+
+		}
+		if (GetKeyState(0x37) < 0 || GetKeyState(VK_NUMPAD7) < 0) {
+			if (administrator == true) {
+				string nazwa_do_skasowania;
+				cout << "Podaj nazwe pliku: ";
+				cin >> nazwa_do_skasowania;
+				nazwa_do_skasowania += ".txt";
+				if (!remove(nazwa_do_skasowania.c_str()))
+				{
+					cout << "Powiod³o siê.";
+				}
+				else {
+					cout << "\nZ ¿alem zawiadamiamy, ¿e polecenia nie uda³o siê wykonaæ :(\n";
+				}
+			}
+				else {
+					cout << "\nBrak uprawnieñ. Zaloguj siê jako WIELKI BRAT. \n";
+				}
+			
+		}
+		if (GetKeyState(0x38) < 0 || GetKeyState(VK_NUMPAD8) < 0) {
+			string nazwa_pliku;
+			cout << "\nPodaj nazwê pliku, do którego chcesz zapisaæ: ";
+			cin >> nazwa_pliku;
+			zapisz(baza, nazwa_pliku, true);
+		}
+		if (GetKeyState(0x39) < 0 || GetKeyState(VK_NUMPAD9) < 0) {
+			//TODO tu wywo³am Pythona chyba, ¿e stwierdzê za du¿o b³edów
+		}
 	}
-	if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
-		cout << "2opcja";
-		pokaz_baze(baza);
-		fflush(stdin);
-		system("pause");
-		_getch();/// getch()
-		system("cls");
+}
+
+void edytuj_baze(vector <osoba> &baza){
+	cout << "Wybierz co chcesz zedytowaæ: \n1.Dodaj osobê.\n2.Usuñ osobê\n3.Edytuj rekord\n";
+	while(true){
+		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0)
+		{
+			Sleep(200);
+			std::fflush(stdin);
+			dodaj_osobe(baza);
+			
+		}
+		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0)
+		{
+			cout << "========EWAPORACJA========\n";
+			cout << "ZnajdŸ osobê do usuniêcia.\nPodaj imiê LUB nazwisko LUB PESEL:";
+			string osoba_do_usuniecia;
+			getline(cin, osoba_do_usuniecia);
+			try
+			{
+			vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
+			pokaz_vector(zestaw);
+			cout << "Podaj numer osoby: ";
+			usun_osobe(baza,(zestaw.at((_getch() -49))));
+			}
+			catch (out_of_range){
+				cout << " Nie powiod³o siê. Z³y zakres. \n";
+			}
+			catch (ExBrakOsoby& e){
+				cout << e.what();
+			}
+			cout << "Usuniêto.";
+			break;
+		}
+		if (GetKeyState(0x33)<0 || GetKeyState(VK_NUMPAD3)<0){
+
+
+			cout << "ZnajdŸ osobê do zmiany.\nPodaj imiê LUB nazwisko LUB PESEL:";
+			string osoba_do_usuniecia;
+			getline(cin, osoba_do_usuniecia);
+			try
+			{
+				vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
+				pokaz_vector(zestaw);
+				cout << "Podaj numer osoby: ";
+				osoba tmp = zestaw.at((_getch() - 49));
+				auto it = baza.begin();
+				for (it ; it < baza.end(); it++) {
+					if (tmp == *it) {
+						break;
+					}
+				}
+				edytuj_rekord(*it); //TODO tu zmienia zestaw a nie baze DO Zmiany 
+				//Dobra chyba ju¿ dzia³a
+				
+			}
+			catch (out_of_range)
+			{
+				cout << " Nie powiod³o siê. Z³y zakres. \n";
+			}
+			catch (ExBrakOsoby& e)
+			{
+				cout << e.what();
+			}
+		}
+		if (GetKeyState(VK_ESCAPE)<0){
+			Sleep(100);
+			break;
+
+		}
 	}
-	if (GetKeyState(0x33)<0 || GetKeyState(VK_NUMPAD3)<0){
-		cout << "3opcja";
-		pokaz_baze(baza);
+	pokaz_menu();
+
+
+}
+
+void menu_wyswietl_osoby_w_wieku(){
+	int wiek_;
+	cout << "Podaj wiek:";
+	cin >> wiek_;
+	cout << "0.M³odsze\n1.Dok³adnie w tym wieku\n2.Starsze";
+	while (true)
+	{
+		if (GetKeyState(0x30)<0 || GetKeyState(VK_NUMPAD0)<0){
+		pokaz_vector(wyswietl_osoby_w_wieku(0, baza, wiek_));
+		}
+		if (GetKeyState(0x31)<0||GetKeyState(VK_NUMPAD1)<0){
+		pokaz_vector(	wyswietl_osoby_w_wieku(1, baza, wiek_));
+			break;
+		}
+		if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
+		pokaz_vector(wyswietl_osoby_w_wieku(2, baza, wiek_));
+			break;
+		}
 	}
-	if (GetKeyState(0x34)<0 || GetKeyState(VK_NUMPAD4)<0){
-		cout << "4opcja";
-	}
-	if (GetKeyState(0x35)<0 || GetKeyState(VK_NUMPAD5)<0){
-		cout << "5opcja";
-	}
-	if (GetKeyState(0x36)<0 || GetKeyState(VK_NUMPAD6)<0){
-		cout << "6opcja";
-	}
-	Sleep(100);  // blokowanie multi-wywoÅ‚aÅ„ funkcji przy jednym wciÅ›niÄ™ciu klawisza
-	}
+
 }
 
