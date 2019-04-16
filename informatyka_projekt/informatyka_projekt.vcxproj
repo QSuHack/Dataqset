@@ -152,6 +152,7 @@
   <ItemGroup>
     <Text Include="archiwum.txt" />
     <Text Include="dane.txt" />
+    <Text Include="wyj.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h" />

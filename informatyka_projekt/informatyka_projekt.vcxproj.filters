@@ -35,6 +35,9 @@
     <Text Include="dane.txt">
       <Filter>Pliki zasobów</Filter>
     </Text>
+    <Text Include="wyj.txt">
+      <Filter>Pliki zasobów</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">

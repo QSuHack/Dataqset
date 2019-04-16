@@ -40,16 +40,16 @@ void cityStats(vector<osoba>& baza)
 int main()
 {
 
-	archiwizuj("dane.txt", "wyj.txt");
+	//archiwizuj("dane.txt", "wyj.txt");
 	setlocale(LC_ALL, "polish");
-	//pobierz_dane(baza);	
-	//wstep();
+	pobierz_dane(baza);	
+	wstep();
 	//ranga();
 	auto start = std::chrono::system_clock::now();
 
 	
-	pobierz_dane(baza);
-	cityStats(baza);
+	//pobierz_dane(baza);
+	//cityStats(baza);
 	
 	for (auto x: baza)
 	{

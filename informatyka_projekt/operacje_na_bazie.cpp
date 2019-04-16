@@ -234,4 +234,8 @@ void archiwizuj(string nazwa_in, string nazwa_out) {
 	ifstream plik_in(nazwa_in);
 	ofstream plik_out(nazwa_out);
 	plik_out << plik_in.rdbuf();
+	plik_in.close();
+	plik_out.close();
+	remove(nazwa_in.c_str());
+	// TODO mo¿na dodaæ jeszcze modyfikowanie œcie¿ki
 }
