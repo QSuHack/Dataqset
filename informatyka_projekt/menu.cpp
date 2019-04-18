@@ -1,7 +1,7 @@
 #pragma once
-#include "include.h"
 #include <Windows.h>
 #include <iomanip>
+#include "include.h"
 using namespace std;
 std::vector<osoba> baza;
 bool administrator;
@@ -146,6 +146,16 @@ void pokaz_menu() {
 		}
 		if (GetKeyState(0x39) < 0 || GetKeyState(VK_NUMPAD9) < 0) {
 			//TODO tu wywo³am Pythona chyba, ¿e stwierdzê za du¿o b³edów
+			cout << "Dostêpne opcje: \n1. Wygeneruj now¹ bazê danych. \n2.Zaszyfruj lub deszyfruj szyfrem AES bazê danych\n";
+			while (true) {
+				Sleep(300);
+				if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0) {
+					wygeneruj_baze_przez_Python();
+				}
+				if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD9) < 0) {
+					menu_szyfrowanie();
+				}
+			}
 		}
 	}
 }

@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include <conio.h>
 #include <ctime>
@@ -131,3 +130,10 @@ struct ExBrakOsoby : public exception{
 	}
 };
 void archiwizuj(string nazwa_in, string nazwa_out);
+
+
+//py
+int wygeneruj_baze_przez_Python();
+int szyfrowanie_i_deszyfrowanie(string nazwa_pliku, string klucz, int mode);
+void menu_szyfrowanie();
+//py koniec

@@ -33,6 +33,9 @@
     <ClCompile Include="sort.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="py_func_api.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="archiwum.txt">
@@ -49,5 +52,13 @@
     <ClInclude Include="include.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\x64\Release\generowanie_bazy.py">
+      <Filter>Pliki źródłowe</Filter>
+    </None>
+    <None Include="..\x64\Release\aes.py">
+      <Filter>Pliki źródłowe</Filter>
+    </None>
   </ItemGroup>
 </Project>
