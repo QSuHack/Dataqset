@@ -23,7 +23,7 @@ void cityStats(vector<osoba>&baza)
 			c++;
 		else
 		{
-			cout << p.miasto << " - liczba mieszkańców to: " << c << endl;
+			cout << p.miasto << " - liczba mieszkańców to: "<< c << endl;
 			c = 1;
 		}
 	}

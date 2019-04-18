@@ -98,11 +98,12 @@ void pokaz_menu() {
 		if (GetKeyState(0x34) < 0 || GetKeyState(VK_NUMPAD4) < 0) {
 		}
 		if (GetKeyState(0x35) < 0 || GetKeyState(VK_NUMPAD5) < 0) {
-			//sort_menu(baza);
+			sort_menu(baza);
 		}
 		if (GetKeyState(0x36) < 0 || GetKeyState(VK_NUMPAD6) < 0) {
+			menu_statystyki();
 			menu_wyswietl_osoby_w_wieku(); //TODO <- tu daæ menu modu³u statystyk i przenieœæ to wywo³anie tam
-
+			
 		}
 		if (GetKeyState(0x37) < 0 || GetKeyState(VK_NUMPAD7) < 0) {
 			if (administrator == true) {
@@ -231,3 +232,16 @@ void menu_wyswietl_osoby_w_wieku(){
 
 }
 
+
+void menu_statystyki() {
+	if (baza.size() == 0) {
+		cout << "Baza jest pusta";
+	}
+	else {
+		countUnderage(baza);
+		cityStats(baza);
+		countByGender(baza);
+		oldestAndYoungest(baza);
+		averageAge(baza);
+	}
+}

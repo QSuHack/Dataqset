@@ -84,16 +84,15 @@ bool pobierz_dane(std::vector <osoba> &baza, string nazwa_pliku = "dane.txt");
 void usun_osobe(std::vector <osoba> &baza, osoba os);
 void edytuj_baze(std::vector<osoba>& baza);
 void menu_wyswietl_osoby_w_wieku();
+void menu_statystyki();
 std::vector<osoba> kopia_bazy(std::vector<osoba> baza);
 
-void output(const std::vector<osoba>&dat);
+
 bool nameAtoZSortCondition(osoba &s1, osoba &s2);
 void sortByNameAtoZ(std::vector<osoba>&baza);
 bool nameZtoASortCondition(osoba &s1, osoba &s2);
-void sortByNameZtoA(std::vector<osoba>&baza);
-bool surnnameAtoZSortCondition(osoba &s1, osoba &s2);
-void sortBySurnameAtoZ(std::vector<osoba>&baza);
-bool surnnameZtoASortCondition(osoba &s1, osoba &s2);
+void sortByNameZtoA(std::vector<osoba>& baza);
+void sortBySurnameAtoZ(std::vector<osoba>& baza);
 void sortBySurnameZtoA(std::vector<osoba>&baza);
 bool cityAtoZSortCondition(osoba &s1, osoba &s2);
 void sortByCityAtoZ(std::vector<osoba>&baza);

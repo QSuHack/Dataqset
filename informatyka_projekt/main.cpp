@@ -15,9 +15,10 @@ int main()
 	//archiwizuj("dane.txt", "wyj.txt");
 	setlocale(LC_ALL, "polish");
 	pobierz_dane(baza);	
+	menu_statystyki();
 	wstep();
-	//ranga();
-
+	ranga();
+	
 	auto start = std::chrono::system_clock::now();
 
 	
