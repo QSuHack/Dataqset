@@ -115,7 +115,7 @@ void sort_menu(vector<osoba> & baza)
 {
 	system("pause");
 	system("cls");
-	cout << "1. Sortowanie po imieniu od A do Z\n2. Sortowanie po imieniu od Z do A\n3. Sortowanie po nazwisku od A do Z\n4. Sortowanie po nazwisku od Z do A\n5. Sortowanie po mieœcie od A do Z\n6. Sortowanie po mieœcie od Z do A\n";
+	cout << "1. Sortowanie po imieniu od A do Z\n2. Sortowanie po imieniu od Z do A\n3. Sortowanie po nazwisku od A do Z\n4. Sortowanie po nazwisku od Z do A\n5. Sortowanie po mieœcie od A do Z\n6. Sortowanie po mieœcie od Z do A\n7.Sortowanie po wieku, od najm³odzszego do najstarszego\n8.Sortowanie wieku, od najstarszego do najm³odzszego\n";
 
 	switch (_getch())
 	{
