@@ -6,7 +6,7 @@
 using namespace std;
 
 
-bool nameAtoZSortCondition(osoba &s1, osoba &s2)
+bool nameAtoZSortCondition(osoba& s1, osoba& s2)
 {
 	if (s1.imie != s2.imie)
 		return s1.imie < s2.imie;
@@ -14,12 +14,12 @@ bool nameAtoZSortCondition(osoba &s1, osoba &s2)
 		return s1.nazwisko < s2.nazwisko;
 }
 
-void sortByNameAtoZ(vector<osoba>&baza)
+void sortByNameAtoZ(vector<osoba> & baza)
 {
 	sort(baza.begin(), baza.end(), nameAtoZSortCondition);
 }
 
-bool nameZtoASortCondition(osoba &s1, osoba &s2)
+bool nameZtoASortCondition(osoba & s1, osoba & s2)
 {
 	if (s1.imie != s2.imie)
 		return s1.imie > s2.imie;
@@ -27,12 +27,12 @@ bool nameZtoASortCondition(osoba &s1, osoba &s2)
 		return s1.nazwisko > s2.nazwisko;
 }
 
-void sortByNameZtoA(vector<osoba>&baza)
+void sortByNameZtoA(vector<osoba> & baza)
 {
 	sort(baza.begin(), baza.end(), nameZtoASortCondition);
 }
 
-bool surnameAtoZSortCondition(osoba &s1, osoba &s2)
+bool surnameAtoZSortCondition(osoba & s1, osoba & s2)
 {
 	if (s1.nazwisko != s2.nazwisko)
 		return s1.nazwisko < s2.nazwisko;
@@ -40,12 +40,12 @@ bool surnameAtoZSortCondition(osoba &s1, osoba &s2)
 		return s1.imie < s2.imie;
 }
 
-void sortBySurnameAtoZ(vector<osoba>&baza)
+void sortBySurnameAtoZ(vector<osoba> & baza)
 {
 	sort(baza.begin(), baza.end(), surnameAtoZSortCondition);
 }
 
-bool surnameZtoASortCondition(osoba &s1, osoba &s2)
+bool surnameZtoASortCondition(osoba & s1, osoba & s2)
 {
 	if (s1.nazwisko != s2.nazwisko)
 		return s1.nazwisko > s2.nazwisko;
@@ -53,32 +53,32 @@ bool surnameZtoASortCondition(osoba &s1, osoba &s2)
 		return s1.imie > s2.imie;
 }
 
-void sortBySurnameZtoA(vector<osoba>&baza)
+void sortBySurnameZtoA(vector<osoba> & baza)
 {
 	sort(baza.begin(), baza.end(), surnameZtoASortCondition);
 }
 
-bool cityAtoZSortCondition(osoba &s1, osoba &s2)
+bool cityAtoZSortCondition(osoba & s1, osoba & s2)
 {
 	return s1.miasto < s2.miasto;
 }
 
-void sortByCityAtoZ(vector<osoba>&baza)
+void sortByCityAtoZ(vector<osoba> & baza)
 {
 	sort(baza.begin(), baza.end(), cityAtoZSortCondition);
 }
 
-bool cityZtoASortCondition(osoba &s1, osoba &s2)
+bool cityZtoASortCondition(osoba & s1, osoba & s2)
 {
 	return s1.miasto > s2.miasto;
 }
 
-void sortByCityZtoA(vector<osoba>&baza)
+void sortByCityZtoA(vector<osoba> & baza)
 {
 	sort(baza.begin(), baza.end(), cityZtoASortCondition);
 }
 
-bool ageYtoOSortCondition(osoba &s1, osoba &s2)
+bool ageYtoOSortCondition(osoba & s1, osoba & s2)
 {
 	if (s1.data_urodzenia.tm_year != s2.data_urodzenia.tm_year)
 		return s1.data_urodzenia.tm_year > s2.data_urodzenia.tm_year;
@@ -88,12 +88,12 @@ bool ageYtoOSortCondition(osoba &s1, osoba &s2)
 		return s1.data_urodzenia.tm_mday > s2.data_urodzenia.tm_mday;
 }
 
-void sortByAgeYtoO(vector<osoba>&baza)
+void sortByAgeYtoO(vector<osoba> & baza)
 {
 	sort(baza.begin(), baza.end(), ageYtoOSortCondition);
 }
 
-bool ageOtoYSortCondition(osoba &s1, osoba &s2)
+bool ageOtoYSortCondition(osoba & s1, osoba & s2)
 {
 	if (s1.data_urodzenia.tm_year != s2.data_urodzenia.tm_year)
 		return s1.data_urodzenia.tm_year < s2.data_urodzenia.tm_year;
@@ -103,7 +103,7 @@ bool ageOtoYSortCondition(osoba &s1, osoba &s2)
 		return s1.data_urodzenia.tm_mday < s2.data_urodzenia.tm_mday;
 }
 
-void sortByAgeOtoY(vector<osoba>&baza)
+void sortByAgeOtoY(vector<osoba> & baza)
 {
 	sort(baza.begin(), baza.end(), ageOtoYSortCondition);
 }
@@ -111,9 +111,12 @@ void sortByAgeOtoY(vector<osoba>&baza)
 
 
 
-void sort_menu(vector<osoba>&baza)
+void sort_menu(vector<osoba> & baza)
 {
-	cout << "1. Sortowanie po imieniu od A do Z\n2.Sortowanie po imieniu od Z do A\n3. Sortowanie po nazwisku od A do Z\n4.Sortowanie po nazwisku od Z do A\n5. Sortowanie po mieÅ›cie od A do Z\n6.Sortowanie po mieÅ›cie od Z do A\n";
+	system("pause");
+	system("cls");
+	cout << "1. Sortowanie po imieniu od A do Z\n2. Sortowanie po imieniu od Z do A\n3. Sortowanie po nazwisku od A do Z\n4. Sortowanie po nazwisku od Z do A\n5. Sortowanie po mieœcie od A do Z\n6. Sortowanie po mieœcie od Z do A\n";
+
 	switch (_getch())
 	{
 	case 49:sortByNameAtoZ(baza);

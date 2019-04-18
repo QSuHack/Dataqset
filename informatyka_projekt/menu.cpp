@@ -19,6 +19,7 @@ void ranga(){
 			if (zaloguj_jako_wielki_brat())
 			{
 				administrator = true;
+				system("cls");
 				pokaz_menu();
 				
 			}
@@ -28,6 +29,7 @@ void ranga(){
 			}
 		}
 		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0){
+			system("cls");
 			pokaz_menu();
 		}
 
@@ -35,7 +37,7 @@ void ranga(){
 			cout << "Brak dostêpu. WeŸ, idŸ siê zajmij czymœ innym, ok? \n";
 		}
 		if (GetKeyState(VK_ESCAPE)<0){
-			cout << "koniec";
+			cout << "\nKoniec programu\n";
 		}
 		else{
 			cout << "b³¹d";
@@ -70,7 +72,7 @@ void pokaz_menu() {
 		}
 		if (GetKeyState(VK_ESCAPE) < 0)
 		{
-			cout << "koniec";
+			cout << "¯egnaj!";
 			break;
 		}
 		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0) {
@@ -80,29 +82,36 @@ void pokaz_menu() {
 			tmp += ".txt";
 			pobierz_dane(baza,tmp);
 			cout << "\nWczytano bazê.\n";
-
+			system("pause");
+			system("cls");
+			pokaz_menu();
 		}
 		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0) {
-			cout << "2opcja\n";
 			pokaz_baze(baza);
-
 			system("pause");/// getch() wywala siê na ryj
 			system("cls");
 			pokaz_menu();
 		}
 		if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0) {
-			cout << "3opcja";
 			Sleep(200);
 			edytuj_baze(baza);
+			system("pause");
+			system("cls");
+			pokaz_menu();
 		}
 		if (GetKeyState(0x34) < 0 || GetKeyState(VK_NUMPAD4) < 0) {
 		}
 		if (GetKeyState(0x35) < 0 || GetKeyState(VK_NUMPAD5) < 0) {
 			sort_menu(baza);
+			system("pause");
+			system("cls");
+			pokaz_menu();
 		}
 		if (GetKeyState(0x36) < 0 || GetKeyState(VK_NUMPAD6) < 0) {
 			menu_statystyki();
-			menu_wyswietl_osoby_w_wieku(); //TODO <- tu daæ menu modu³u statystyk i przenieœæ to wywo³anie tam
+			system("pause");
+			system("cls");
+			pokaz_menu();
 			
 		}
 		if (GetKeyState(0x37) < 0 || GetKeyState(VK_NUMPAD7) < 0) {
@@ -122,13 +131,18 @@ void pokaz_menu() {
 				else {
 					cout << "\nBrak uprawnieñ. Zaloguj siê jako WIELKI BRAT. \n";
 				}
-			
+			system("pause");
+			system("cls");
+			pokaz_menu();
 		}
 		if (GetKeyState(0x38) < 0 || GetKeyState(VK_NUMPAD8) < 0) {
 			string nazwa_pliku;
 			cout << "\nPodaj nazwê pliku, do którego chcesz zapisaæ: ";
 			cin >> nazwa_pliku;
 			zapisz(baza, nazwa_pliku, true);
+			system("pause");
+			system("cls");
+			pokaz_menu();
 		}
 		if (GetKeyState(0x39) < 0 || GetKeyState(VK_NUMPAD9) < 0) {
 			//TODO tu wywo³am Pythona chyba, ¿e stwierdzê za du¿o b³edów
@@ -165,7 +179,7 @@ void edytuj_baze(vector <osoba> &baza){
 			catch (ExBrakOsoby& e){
 				cout << e.what();
 			}
-			cout << "Usuniêto.";
+			cout << "Usuniêto.\n";
 			break;
 		}
 		if (GetKeyState(0x33)<0 || GetKeyState(VK_NUMPAD3)<0){
@@ -212,7 +226,7 @@ void edytuj_baze(vector <osoba> &baza){
 
 void menu_wyswietl_osoby_w_wieku(){
 	int wiek_;
-	cout << "Podaj wiek:";
+	cout << "Tu mo¿esz wyœwietliæ osoby m³odsze/starsze lub dok³adnie w tym wybranym przez ciebie wieku\n";
 	cin >> wiek_;
 	cout << "0.M³odsze\n1.Dok³adnie w tym wieku\n2.Starsze";
 	while (true)
@@ -243,5 +257,6 @@ void menu_statystyki() {
 		countByGender(baza);
 		oldestAndYoungest(baza);
 		averageAge(baza);
+		menu_wyswietl_osoby_w_wieku();
 	}
 }
