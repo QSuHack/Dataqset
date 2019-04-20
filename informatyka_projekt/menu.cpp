@@ -64,7 +64,7 @@ void pokaz_menu() {
 		<< "\n4.Archiwizuj bazê danych.\n5.Posortuj bazê\n6.Statystyki\n7.Ostateczne rozwi¹zanie problemu ludzkoœci(usuñ bazê danych)\n8.Zapisz zmiany.\n9.Zaawansowane \nESC Wyjœcie.\n";
 	int position = 0;
 	while (true) {
-		Sleep(100);  // blokowanie multi-wywo³añ funkcji przy jednym wciœniêciu klawisza
+		Sleep(200);  // blokowanie multi-wywo³añ funkcji przy jednym wciœniêciu klawisza
 		if (GetKeyState(VK_UP) < 0)
 		{
 			cout << "E";
@@ -80,8 +80,9 @@ void pokaz_menu() {
 			cout << "Podaj nazwê pliku, który chcesz otworzyæ (bez rozszerzenia): ";
 			cin >> tmp;
 			tmp += ".txt";
-			pobierz_dane(baza,tmp);
-			cout << "\nWczytano bazê.\n";
+			if (pobierz_dane(baza, tmp)) {
+				cout << "\nWczytano bazê.\n";
+			}
 			system("pause");
 			system("cls");
 			pokaz_menu();
@@ -100,6 +101,24 @@ void pokaz_menu() {
 			pokaz_menu();
 		}
 		if (GetKeyState(0x34) < 0 || GetKeyState(VK_NUMPAD4) < 0) {
+			string nazwa_do_archiwizacji, nazwa_docelowa;
+			bool kasowanie; string tmp;
+			cout << "Podaj nazwê pliku, który chcesz z archwizowaæ: \n";
+			cin >> nazwa_do_archiwizacji;
+			cout << "Podaj nazwê pliku, do którego chcesz z archwizowaæ: \n";
+			cin >> nazwa_docelowa;
+			cout << "Czy chcesz skasowaæ " << nazwa_do_archiwizacji << "?(T/N)";
+			cin >> tmp;
+			if (tmp.c_str() == "T") {
+				kasowanie = true;
+			}
+			else {
+				kasowanie = false;
+			}
+			archiwizuj(nazwa_do_archiwizacji,nazwa_docelowa,kasowanie);
+			system("cls");
+			pokaz_menu();
+
 		}
 		if (GetKeyState(0x35) < 0 || GetKeyState(VK_NUMPAD5) < 0) {
 			sort_menu(baza);
@@ -128,8 +147,8 @@ void pokaz_menu() {
 					cout << "\nZ ¿alem zawiadamiamy, ¿e polecenia nie uda³o siê wykonaæ :(\n";
 				}
 			}
-				else {
-					cout << "\nBrak uprawnieñ. Zaloguj siê jako WIELKI BRAT. \n";
+			else {
+				cout << "\nBrak uprawnieñ. Zaloguj siê jako WIELKI BRAT. \n";
 				}
 			system("pause");
 			system("cls");
@@ -151,12 +170,19 @@ void pokaz_menu() {
 				Sleep(300);
 				if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0) {
 					wygeneruj_baze_przez_Python();
+					break;
 				}
 				if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD9) < 0) {
 					menu_szyfrowanie();
+					break;
 				}
 			}
+			system("pause");
+			system("cls");
+			pokaz_menu();
 		}
+		
+
 	}
 }
 
@@ -168,7 +194,7 @@ void edytuj_baze(vector <osoba> &baza){
 			Sleep(200);
 			std::fflush(stdin);
 			dodaj_osobe(baza);
-			
+			break;
 		}
 		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0)
 		{
@@ -181,7 +207,7 @@ void edytuj_baze(vector <osoba> &baza){
 			vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
 			pokaz_vector(zestaw);
 			cout << "Podaj numer osoby: ";
-			usun_osobe(baza,(zestaw.at((_getch() -49))));
+			usun_osobe(baza,(zestaw.at((_getch() -  (long long) 49))));
 			}
 			catch (out_of_range){
 				cout << " Nie powiod³o siê. Z³y zakres. \n";
@@ -189,7 +215,6 @@ void edytuj_baze(vector <osoba> &baza){
 			catch (ExBrakOsoby& e){
 				cout << e.what();
 			}
-			cout << "Usuniêto.\n";
 			break;
 		}
 		if (GetKeyState(0x33)<0 || GetKeyState(VK_NUMPAD3)<0){
@@ -203,7 +228,7 @@ void edytuj_baze(vector <osoba> &baza){
 				vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
 				pokaz_vector(zestaw);
 				cout << "Podaj numer osoby: ";
-				osoba tmp = zestaw.at((_getch() - 49));
+				osoba tmp = zestaw.at((_getch() - (long long)49));
 				auto it = baza.begin();
 				for (it ; it < baza.end(); it++) {
 					if (tmp == *it) {
@@ -222,6 +247,7 @@ void edytuj_baze(vector <osoba> &baza){
 			{
 				cout << e.what();
 			}
+			break;
 		}
 		if (GetKeyState(VK_ESCAPE)<0){
 			Sleep(100);
@@ -245,7 +271,7 @@ void menu_wyswietl_osoby_w_wieku(){
 		pokaz_vector(wyswietl_osoby_w_wieku(0, baza, wiek_));
 		}
 		if (GetKeyState(0x31)<0||GetKeyState(VK_NUMPAD1)<0){
-		pokaz_vector(	wyswietl_osoby_w_wieku(1, baza, wiek_));
+		pokaz_vector(wyswietl_osoby_w_wieku(1, baza, wiek_));
 			break;
 		}
 		if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){

@@ -57,6 +57,7 @@ int wygeneruj_baze_przez_Python()
 	else
 	{
 		PyErr_Print();
+		cout << "SprawdŸ czy wymagane pliki s¹ na w³aœciwej œcie¿ce! \n";
 		system("pause");
 		return -1;
 	}
@@ -96,7 +97,7 @@ int szyfrowanie_i_deszyfrowanie(string nazwa_pliku, string klucz, int mode) {
 				Py_DECREF(pModule);
 			}
 			PyTuple_SetItem(pArgs, 0, pValue);
-			pValue = PyBytes_FromString(klucz.c_str());
+			pValue = PyBytes_FromString(klucz.c_str());// konwertujemy c string na typ bajtowy python'a
 			if (!pValue) {
 				Py_DECREF(pArgs);
 				Py_DECREF(pModule);

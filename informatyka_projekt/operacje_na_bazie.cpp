@@ -51,6 +51,7 @@ void usun_osobe(vector <osoba> &baza, osoba os){
 	{
 		if (*it == os){
 			baza.erase(it);
+			cout << "Usuniêto.\n";
 			return;
 		}
 	}
@@ -69,6 +70,10 @@ bool pobierz_dane(vector <osoba> &baza, string nazwa_pliku)
 	bool flaga = false;
 	ifstream plik(nazwa_pliku);
 	osoba c;
+	if (!plik) {
+		cout << "Plik " << nazwa_pliku << " nie istnieje.";
+		return false;
+	}
 	while (!plik.eof())
 	{
 		plik >> c.imie >> c.nazwisko >> c.PESEL;
@@ -106,9 +111,9 @@ void dodaj_osobe(vector <osoba> &baza)
 	osoba os;
 	string os_tmp;
 	bool flag = false;
-	#undef max
+	/*#undef max
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	_getch();
+	_getch();*/
 	cout << "\nPodaj imiê: ";
 	cin >> os.imie;
 	cout << "\nPodaj nazwisko: ";
@@ -124,7 +129,12 @@ void dodaj_osobe(vector <osoba> &baza)
 			cout << "Niepoprawny format, spróbuj jeszcze raz!";
 		}
 	}
+	os.PESEL = os_tmp;
+	os.wyluskaj_date_urodzenia(os.PESEL);
+	os.wylicz_wiek();
 	cout << "Podaj miasto: ";
+	#undef max
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	getline(cin, os.miasto);
 	baza.push_back(os);
 }
@@ -219,6 +229,8 @@ void edytuj_rekord(osoba &os)
 			}
 		}
 		os.PESEL = os_tmp;
+		os.wyluskaj_date_urodzenia(os.PESEL);
+		os.wylicz_wiek();
 		cout << "\nPESEL zmieniono.";
 	}
 	cout << "\nPodaj miasto: ";
@@ -230,12 +242,14 @@ void edytuj_rekord(osoba &os)
 
 }
 
-void archiwizuj(string nazwa_in, string nazwa_out) {
+void archiwizuj(string nazwa_in, string nazwa_out,bool kasuj) {
 	ifstream plik_in(nazwa_in);
 	ofstream plik_out(nazwa_out);
 	plik_out << plik_in.rdbuf();
 	plik_in.close();
 	plik_out.close();
-	remove(nazwa_in.c_str());
+	if (kasuj) {
+		remove(nazwa_in.c_str());
+	}
 	// TODO mo¿na dodaæ jeszcze modyfikowanie œcie¿ki
 }

@@ -129,7 +129,7 @@ struct ExBrakOsoby : public exception{
 		return "Nie znaleziono osoby.";
 	}
 };
-void archiwizuj(string nazwa_in, string nazwa_out);
+void archiwizuj(string nazwa_in, string nazwa_out, bool kasuj);
 
 
 //py
