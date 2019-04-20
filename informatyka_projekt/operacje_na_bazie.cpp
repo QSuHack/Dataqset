@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <limits>
 using namespace std;
+
 osoba znajdz_poj_osobe(std::vector<osoba>& baza, std::string szukana_wartosc)
 {
 	for (auto x : baza){
@@ -34,6 +35,10 @@ std::vector<osoba> znajdz_zestaw_osob(std::vector<osoba>& baza, std::string szuk
 
 
 void pokaz_baze(vector<osoba> baza){
+	if (baza.size() == 0) {
+		cout << "Baza jest pusta.";
+		return;
+	}
 	for (auto it = baza.begin(); it < baza.end(); it++)
 	{
 		cout << *it << "\n";
@@ -46,6 +51,7 @@ void usun_osobe(vector <osoba> &baza, osoba os){
 	{
 		if (*it == os){
 			baza.erase(it);
+			cout << "Usuniêto.\n";
 			return;
 		}
 	}
@@ -59,11 +65,15 @@ vector <osoba> kopia_bazy(vector<osoba>baza){
 }
 
 
-bool pobierz_dane(vector <osoba> &baza)
+bool pobierz_dane(vector <osoba> &baza, string nazwa_pliku)
 {
 	bool flaga = false;
-	ifstream plik("dane.txt");
+	ifstream plik(nazwa_pliku);
 	osoba c;
+	if (!plik) {
+		cout << "Plik " << nazwa_pliku << " nie istnieje.";
+		return false;
+	}
 	while (!plik.eof())
 	{
 		plik >> c.imie >> c.nazwisko >> c.PESEL;
@@ -74,6 +84,7 @@ bool pobierz_dane(vector <osoba> &baza)
 		}
 	}
 	flaga = ustaw_pola(baza);
+	plik.close();
 	return flaga;
 }
 
@@ -90,7 +101,7 @@ bool ustaw_pola(vector <osoba>& baza) {
 	for (vector<osoba>::iterator it = baza.begin(); it < baza.end();it++) {
 
 		it->wyluskaj_date_urodzenia(it->PESEL); it->wylicz_wiek();
-		cout << it->zwroc_wiek() << " ";
+		
 	}
 	return true;
 }
@@ -100,7 +111,7 @@ void dodaj_osobe(vector <osoba> &baza)
 	osoba os;
 	string os_tmp;
 	bool flag = false;
-/*	#undef max
+	/*#undef max
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	_getch();*/
 	cout << "\nPodaj imiê: ";
@@ -118,13 +129,18 @@ void dodaj_osobe(vector <osoba> &baza)
 			cout << "Niepoprawny format, spróbuj jeszcze raz!";
 		}
 	}
+	os.PESEL = os_tmp;
+	os.wyluskaj_date_urodzenia(os.PESEL);
+	os.wylicz_wiek();
 	cout << "Podaj miasto: ";
+	#undef max
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	getline(cin, os.miasto);
 	baza.push_back(os);
 }
 
 
-void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=false){
+void zapisz(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=true){
 	fstream plikw;
 	if(kasuj){
 		plikw.open((nazwa_pliku + ".txt"), fstream::out | fstream::trunc);
@@ -137,6 +153,7 @@ void archiwizuj(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=fals
 	{
 		plikw << *it <<"\n";
 	}
+	plikw.close();
 }
 
 vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
@@ -195,6 +212,7 @@ void edytuj_rekord(osoba &os)
 	cout << "\nObecne nazwisko: " << os.nazwisko << "\nPodaj nowe nazwisko: ";
 	cin >> os.nazwisko;
 	cout << "Czy chcesz zachowaæ numer pesel? (T/N)";
+	
 	if (_getch() == 'N')
 	{
 		bool flag = false;
@@ -211,10 +229,27 @@ void edytuj_rekord(osoba &os)
 			}
 		}
 		os.PESEL = os_tmp;
+		os.wyluskaj_date_urodzenia(os.PESEL);
+		os.wylicz_wiek();
 		cout << "\nPESEL zmieniono.";
 	}
 	cout << "\nPodaj miasto: ";
+	#undef max
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 	getline(cin, os.miasto);
 	cout << "\nZmienianie rekordu zakoñczono.";
 
+}
+
+void archiwizuj(string nazwa_in, string nazwa_out,bool kasuj) {
+	ifstream plik_in(nazwa_in);
+	ofstream plik_out(nazwa_out);
+	plik_out << plik_in.rdbuf();
+	plik_in.close();
+	plik_out.close();
+	if (kasuj) {
+		remove(nazwa_in.c_str());
+	}
+	// TODO mo¿na dodaæ jeszcze modyfikowanie œcie¿ki
 }
