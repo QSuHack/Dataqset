@@ -36,13 +36,13 @@ void ranga(){
 		if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0){
 			cout << "Brak dostêpu. WeŸ, idŸ siê zajmij czymœ innym, ok? \n";
 		}
-		if (GetKeyState(VK_ESCAPE)<0){
-			cout << "\nKoniec programu\n";
-		}
 		else{
 			cout << "b³¹d";
 			
 			ranga();
+		}
+		if (GetKeyState(VK_ESCAPE)<0){
+			cout << "\nKoniec programu\n";
 		}
 }
 bool zaloguj_jako_wielki_brat(){
@@ -58,8 +58,6 @@ bool zaloguj_jako_wielki_brat(){
 	return false;
 }
 void pokaz_menu() {
-
-	cout << " Tu bêdzie menu";
 	cout << "\nDostêpne opcje: \n1.Wczytaj dane z pliku.\n2.Poka¿ bazê danych.\n3.Edytuj bazê danych"
 		<< "\n4.Archiwizuj bazê danych.\n5.Posortuj bazê\n6.Statystyki\n7.Ostateczne rozwi¹zanie problemu ludzkoœci(usuñ bazê danych)\n8.Zapisz zmiany.\n9.Zaawansowane \nESC Wyjœcie.\n";
 	int position = 0;
@@ -89,7 +87,7 @@ void pokaz_menu() {
 		}
 		if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0) {
 			pokaz_baze(baza);
-			system("pause");/// getch() wywala siê na ryj
+			system("pause");
 			system("cls");
 			pokaz_menu();
 		}

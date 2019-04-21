@@ -6,7 +6,6 @@ using namespace std;
 
 int wygeneruj_baze_przez_Python()
 {
-
 	string nazwa;
 	Py_Initialize(); //wywo³ujemy interpreter
 	PyObject* pName, * pModule, * pFunc, * pArgs, * pValue;

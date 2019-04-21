@@ -7,7 +7,7 @@
 #include <fstream>
 #include <string>
 #include<iterator>
-
+#include <iomanip>
 #include <cstdio>
 using namespace std;
 
@@ -71,6 +71,7 @@ private:
 };
 
 std::ostream& operator<< (std::ostream& out, osoba p);
+std::ostream& operator<<(std::ostream out, tm data);
 osoba znajdz_poj_osobe(std::vector <osoba> &baza, std::string szukana_wartosc);
 std::vector<osoba> znajdz_zestaw_osob(std::vector <osoba> &baza, std::string szukana_wartosc);
 bool ustaw_pola(std::vector <osoba> &baza);
@@ -102,9 +103,6 @@ void sortByAgeYtoO(std::vector<osoba>&baza);
 bool ageOtoYSortCondition(osoba &s1, osoba &s2);
 void sortByAgeOtoY(std::vector<osoba>&baza);
 void sort_menu(std::vector<osoba>&baza);
-
-
-
 void countUnderage(std::vector<osoba>&baza);
 void cityStats(std::vector<osoba>&baza);
 void countByGender(std::vector<osoba>&baza);

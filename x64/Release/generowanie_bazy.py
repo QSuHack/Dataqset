@@ -1,3 +1,4 @@
+# kod zaczyna się od 827 linijki wcześniej są dane
 a = """Adalbert
 Adam
 Adela

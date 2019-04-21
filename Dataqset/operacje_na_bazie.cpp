@@ -39,6 +39,8 @@ void pokaz_baze(vector<osoba> baza){
 		cout << "Baza jest pusta.";
 		return;
 	}
+	cout << setw(15) << "Imiê" << " " << setw(20) << "Nazwisko" << " " << setw(20) << "Miasto" << " " << setw(20) << "Data urodzenia "
+		<< setw(12) << "PESEL" << setw(18) << " Wiek \n";
 	for (auto it = baza.begin(); it < baza.end(); it++)
 	{
 		cout << *it << "\n";
@@ -200,11 +202,6 @@ vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
 
 }
 
-//TODO vector <osoba> szyfruj_baze(vector<osoba> baza, string haslo){
-	
-
-//}
-
 void edytuj_rekord(osoba &os)
 {
 	cout << "\nObecne imiê: " << os.imie << "\nPodaj nowe imiê: ";
@@ -234,7 +231,7 @@ void edytuj_rekord(osoba &os)
 		cout << "\nPESEL zmieniono.";
 	}
 	cout << "\nPodaj miasto: ";
-	#undef max
+	#undef max   // max jest makrem z windows.h musimy je dezaktywowaæ by u¿yæ funkcji max()
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	getline(cin, os.miasto);
