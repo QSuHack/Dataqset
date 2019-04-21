@@ -153,7 +153,7 @@ void zapisz(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=true){
 	}
 	for (auto it = baza.begin();it < baza.end(); it++)
 	{
-		plikw << *it <<"\n";
+		plikw << it->imie <<" "<< it->nazwisko<< " " << it->PESEL<<" " << it->miasto <<"\n"; //zmiana  
 	}
 	plikw.close();
 }
@@ -242,6 +242,10 @@ void edytuj_rekord(osoba &os)
 void archiwizuj(string nazwa_in, string nazwa_out,bool kasuj) {
 	ifstream plik_in(nazwa_in);
 	ofstream plik_out(nazwa_out);
+	if (!plik_in) {
+		cout << "Nie ma takiego pliku! ";
+		return;
+	}
 	plik_out << plik_in.rdbuf();
 	plik_in.close();
 	plik_out.close();

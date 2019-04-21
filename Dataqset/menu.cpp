@@ -33,17 +33,22 @@ void ranga(){
 			pokaz_menu();
 		}
 
-		if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0){
-			cout << "Brak dostêpu. WeŸ, idŸ siê zajmij czymœ innym, ok? \n";
+		if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0|| GetKeyState(VK_ESCAPE) < 0){
+			if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0) 
+			{
+				cout << "Brak dostêpu. WeŸ, idŸ siê zajmij czymœ innym, ok? \n";
+			}
+			if (GetKeyState(VK_ESCAPE)<0)
+			{
+				cout << "\nKoniec programu\n";
+			}
 		}
 		else{
 			cout << "b³¹d";
 			
 			ranga();
 		}
-		if (GetKeyState(VK_ESCAPE)<0){
-			cout << "\nKoniec programu\n";
-		}
+		
 }
 bool zaloguj_jako_wielki_brat(){
 	system("cls");
@@ -107,6 +112,8 @@ void pokaz_menu() {
 			cin >> nazwa_docelowa;
 			cout << "Czy chcesz skasowaæ " << nazwa_do_archiwizacji << "?(T/N)";
 			cin >> tmp;
+			nazwa_docelowa += ".txt";
+			nazwa_do_archiwizacji += ".txt";
 			if (tmp.c_str() == "T") {
 				kasowanie = true;
 			}
@@ -136,13 +143,19 @@ void pokaz_menu() {
 				string nazwa_do_skasowania;
 				cout << "Podaj nazwe pliku: ";
 				cin >> nazwa_do_skasowania;
-				nazwa_do_skasowania += ".txt";
-				if (!remove(nazwa_do_skasowania.c_str()))
-				{
-					cout << "Powiod³o siê.";
+				if (nazwa_do_skasowania == ".") {
+					baza.clear();
 				}
-				else {
-					cout << "\nZ ¿alem zawiadamiamy, ¿e polecenia nie uda³o siê wykonaæ :(\n";
+				else 
+				{
+					nazwa_do_skasowania += ".txt";
+					if (!remove(nazwa_do_skasowania.c_str()))
+					{
+						cout << "Powiod³o siê.";
+					}
+					else {
+						cout << "\nZ ¿alem zawiadamiamy, ¿e polecenia nie uda³o siê wykonaæ :(\n";
+					}
 				}
 			}
 			else {
@@ -233,7 +246,7 @@ void edytuj_baze(vector <osoba> &baza){
 						break;
 					}
 				}
-				edytuj_rekord(*it); //TODO tu zmienia zestaw a nie baze DO Zmiany 
+				edytuj_rekord(*it); 
 				//Dobra chyba ju¿ dzia³a
 				
 			}
@@ -246,6 +259,7 @@ void edytuj_baze(vector <osoba> &baza){
 				cout << e.what();
 			}
 			break;
+
 		}
 		if (GetKeyState(VK_ESCAPE)<0){
 			Sleep(100);
@@ -253,31 +267,39 @@ void edytuj_baze(vector <osoba> &baza){
 
 		}
 	}
+	system("pause");
+	system("cls");
 	pokaz_menu();
 
 
 }
 
-void menu_wyswietl_osoby_w_wieku(){
+void menu_wyswietl_osoby_w_wieku() {
 	int wiek_;
 	cout << "Tu mo¿esz wyœwietliæ osoby m³odsze/starsze lub dok³adnie w tym wybranym przez ciebie wieku\n";
 	cin >> wiek_;
-	cout << "0.M³odsze\n1.Dok³adnie w tym wieku\n2.Starsze";
-	while (true)
-	{
-		if (GetKeyState(0x30)<0 || GetKeyState(VK_NUMPAD0)<0){
-		pokaz_vector(wyswietl_osoby_w_wieku(0, baza, wiek_));
-		}
-		if (GetKeyState(0x31)<0||GetKeyState(VK_NUMPAD1)<0){
-		pokaz_vector(wyswietl_osoby_w_wieku(1, baza, wiek_));
-			break;
-		}
-		if (GetKeyState(0x32)<0 || GetKeyState(VK_NUMPAD2)<0){
-		pokaz_vector(wyswietl_osoby_w_wieku(2, baza, wiek_));
-			break;
+	cout << "0.M³odsze\n1.Dok³adnie w tym wieku\n2.Starsze\n";
+	try {
+		while (true)
+		{
+			if (GetKeyState(0x30) < 0 || GetKeyState(VK_NUMPAD0) < 0) {
+				pokaz_vector(wyswietl_osoby_w_wieku(0, baza, wiek_));
+				break;
+			}
+			if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0) {
+				pokaz_vector(wyswietl_osoby_w_wieku(1, baza, wiek_));
+				break;
+			}
+			if (GetKeyState(0x32) < 0 || GetKeyState(VK_NUMPAD2) < 0) {
+				pokaz_vector(wyswietl_osoby_w_wieku(2, baza, wiek_));
+				break;
+			}
 		}
 	}
-
+	catch (ExBrakOsoby & e)
+	{
+		cout << e.what();
+	}
 }
 
 
@@ -286,11 +308,14 @@ void menu_statystyki() {
 		cout << "Baza jest pusta";
 	}
 	else {
+		cout << "\n W bazie jest " << baza.size() << " rekordów.\n";
 		countUnderage(baza);
 		cityStats(baza);
+		name_length(baza);
 		countByGender(baza);
 		oldestAndYoungest(baza);
 		averageAge(baza);
 		menu_wyswietl_osoby_w_wieku();
+
 	}
 }

@@ -263,7 +263,6 @@ Konrad
 Konrada
 Konstancja
 Konstanty
-
 Konstantyn
 Kordelia
 Kordian

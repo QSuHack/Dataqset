@@ -150,6 +150,7 @@ void menu_szyfrowanie() {
 	cin >> mode;
 	cout << "\nPodaj nazwê pliku: ";
 	cin >> nazwa;
+	nazwa += ".txt";
 	cout << "\nPodaj klucz: ";
 	cin >> klucz;
 	szyfrowanie_i_deszyfrowanie(nazwa, klucz, mode);

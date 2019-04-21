@@ -55,7 +55,7 @@ struct osoba
 			else
 			{	
 				data.tm_year = std::stoi(pesel.substr(0, 2)) + 2000;
-				data.tm_mon = std::stoi(pesel.substr(2, 2)) - 21;
+				data.tm_mon = std::stoi(pesel.substr(2, 2)) - 20;
 				data.tm_mday = std::stoi(pesel.substr(4, 2));
 				data.tm_hour = 0;
 				data.tm_min = 0;
@@ -108,6 +108,7 @@ void cityStats(std::vector<osoba>&baza);
 void countByGender(std::vector<osoba>&baza);
 void oldestAndYoungest(std::vector<osoba>&baza);
 void averageAge(std::vector<osoba>&baza);
+void name_length(vector<osoba> baza);
 std::vector<osoba> wyswietl_osoby_w_wieku(int mode, std::vector<osoba> baza, int wiek);
 void edytuj_rekord(osoba & os);
 template <typename T, typename A>
