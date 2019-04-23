@@ -19,6 +19,5 @@
   <ItemGroup>
     <Text Include="archiwum.txt" />
     <Text Include="wyj.txt" />
-    <Text Include="dane.txt" />
   </ItemGroup>
 </Project>

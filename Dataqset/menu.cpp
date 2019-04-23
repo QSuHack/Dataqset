@@ -7,8 +7,7 @@ std::vector<osoba> baza;
 bool administrator;
 
 void wstep(){
-	cout << "Witaj w programie kontroli populacji.\nInformacje dostarcza Minsterstwo Prawdy.\n";
-	//TODO ci¹g dalszy fabu³y
+	cout << "Witaj w programie kontroli populacji Dataqset.\nInformacje dostarcza Minsterstwo Prawdy.\n";
 }
 void ranga(){
 	administrator = false;
@@ -57,7 +56,8 @@ bool zaloguj_jako_wielki_brat(){
 	cout << "Podaj has³o dostêpu: ";
 	cin >> haslo;
 	if (haslo==poprawne){
-	//TODO tu daæ komunikat powitalny i ascii oko saurona or other else
+		cout << "\nWitaj Wielki Bracie\n";
+		system("pause");
 		return true;
 	}
 	return false;
