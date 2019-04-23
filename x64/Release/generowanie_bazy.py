@@ -865,7 +865,7 @@ def PESEL(imie):
     return pesel
 
 
-miasto = ["Warszawa", "Kraków", "Poznań", "Wrocław", "Przemyśl", "Gdańsk", "Sopot", "Łódź", "Opole", "Skierniewice",
+miasto = ["Warszawa", "Kraków", "Poznań", "Wrocław", "Przemyśl", "Gdańsk", "Sopot", "Żyrardów", "Opole", "Skierniewice",
           "Sochaczew", "Legionowo", "Białystok"]
 
 def generuj(nazwa_pliku):
