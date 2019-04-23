@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="operacje_na_bazie.cpp" />
+    <ClCompile Include="py_func_api.cpp" />
+    <ClCompile Include="sort.cpp" />
+    <ClCompile Include="source.cpp" />
+    <ClCompile Include="stats.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\x64\Release\aes.py" />
+    <None Include="..\x64\Release\generowanie_bazy.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="archiwum.txt" />
+    <Text Include="wyj.txt" />
+    <Text Include="dane.txt" />
+  </ItemGroup>
+</Project>

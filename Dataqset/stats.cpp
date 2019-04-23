@@ -74,3 +74,19 @@ void averageAge(vector<osoba> & baza)
 	}
 	cout <<"Œrednia wieku to: "<< total / c << endl;
 }
+
+void name_length(vector <osoba> baza) {
+	int i = 0, n = 0, m = 0;
+	for (auto t : baza)
+	{
+		if (t.imie.length() > i)
+			i = t.imie.length();
+		if (t.imie.length() > n)
+			n = t.nazwisko.length();
+		if (t.imie.length() > m)
+			m = t.miasto.length();
+	}
+	cout << "Najd³u¿sze nazwisko ma d³ugoœæ : " << n << endl;
+	cout << "Najd³u¿sze imiê ma d³ugoœæ: " << i << endl;
+	cout << "Najd³u¿sza nazwa miasta ma d³ugoœæ: " << m << endl;
+}

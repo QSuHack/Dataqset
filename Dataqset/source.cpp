@@ -21,7 +21,10 @@ else{
 std::ostream& operator<< (std::ostream& out, osoba p) // TODO TU MO¯NA POPRAWIÆ WYŒWIETLANIE OSOBY
 
 {
-	out << p.imie << " " << p.nazwisko << " " << p.PESEL << " " << p.miasto << " wiek:" << p.zwroc_wiek();
+	out << setw(15) << p.imie << " " << setw(20) << p.nazwisko << " " << setw(20) << p.miasto << " " << 
+		setw(10)
+		<<p.data_urodzenia.tm_mday << "." << setw(2)<< p.data_urodzenia.tm_mon <<"." << setw(4)<< p.data_urodzenia.tm_year
+		<<" " << setw(15) << p.PESEL <<  setw(15) <<" wiek: " << p.zwroc_wiek();
 	return out;
 }
 

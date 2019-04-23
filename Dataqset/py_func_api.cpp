@@ -6,7 +6,6 @@ using namespace std;
 
 int wygeneruj_baze_przez_Python()
 {
-
 	string nazwa;
 	Py_Initialize(); //wywo³ujemy interpreter
 	PyObject* pName, * pModule, * pFunc, * pArgs, * pValue;
@@ -151,6 +150,7 @@ void menu_szyfrowanie() {
 	cin >> mode;
 	cout << "\nPodaj nazwê pliku: ";
 	cin >> nazwa;
+	nazwa += ".txt";
 	cout << "\nPodaj klucz: ";
 	cin >> klucz;
 	szyfrowanie_i_deszyfrowanie(nazwa, klucz, mode);

@@ -7,7 +7,7 @@
 #include <fstream>
 #include <string>
 #include<iterator>
-
+#include <iomanip>
 #include <cstdio>
 using namespace std;
 
@@ -55,7 +55,7 @@ struct osoba
 			else
 			{	
 				data.tm_year = std::stoi(pesel.substr(0, 2)) + 2000;
-				data.tm_mon = std::stoi(pesel.substr(2, 2)) - 21;
+				data.tm_mon = std::stoi(pesel.substr(2, 2)) - 20;
 				data.tm_mday = std::stoi(pesel.substr(4, 2));
 				data.tm_hour = 0;
 				data.tm_min = 0;
@@ -71,6 +71,7 @@ private:
 };
 
 std::ostream& operator<< (std::ostream& out, osoba p);
+std::ostream& operator<<(std::ostream out, tm data);
 osoba znajdz_poj_osobe(std::vector <osoba> &baza, std::string szukana_wartosc);
 std::vector<osoba> znajdz_zestaw_osob(std::vector <osoba> &baza, std::string szukana_wartosc);
 bool ustaw_pola(std::vector <osoba> &baza);
@@ -102,14 +103,12 @@ void sortByAgeYtoO(std::vector<osoba>&baza);
 bool ageOtoYSortCondition(osoba &s1, osoba &s2);
 void sortByAgeOtoY(std::vector<osoba>&baza);
 void sort_menu(std::vector<osoba>&baza);
-
-
-
 void countUnderage(std::vector<osoba>&baza);
 void cityStats(std::vector<osoba>&baza);
 void countByGender(std::vector<osoba>&baza);
 void oldestAndYoungest(std::vector<osoba>&baza);
 void averageAge(std::vector<osoba>&baza);
+void name_length(vector<osoba> baza);
 std::vector<osoba> wyswietl_osoby_w_wieku(int mode, std::vector<osoba> baza, int wiek);
 void edytuj_rekord(osoba & os);
 template <typename T, typename A>
@@ -118,7 +117,7 @@ void pokaz_vector(vector <T, A> vector_)
 	int i = 1;
 	for (auto it = vector_.begin(); it < vector_.end(); it++)
 	{
-		cout << i << "." << *it << "\n";
+		cout <<setw(2)<< i << "." << *it << "\n";
 		i++;
 
 	}

@@ -39,6 +39,8 @@ void pokaz_baze(vector<osoba> baza){
 		cout << "Baza jest pusta.";
 		return;
 	}
+	cout << setw(15) << "Imiê" << " " << setw(20) << "Nazwisko" << " " << setw(20) << "Miasto" << " " << setw(20) << "Data urodzenia "
+		<< setw(12) << "PESEL" << setw(18) << " Wiek \n";
 	for (auto it = baza.begin(); it < baza.end(); it++)
 	{
 		cout << *it << "\n";
@@ -78,6 +80,9 @@ bool pobierz_dane(vector <osoba> &baza, string nazwa_pliku)
 	{
 		plik >> c.imie >> c.nazwisko >> c.PESEL;
 		getline(plik, c.miasto);
+		if (c.miasto.length() > 2) {
+			c.miasto = c.miasto.substr(1, c.miasto.size());//wycinanie spacji z pocz¹tku 
+		}
 		if (c.PESEL.length() ==11 )
 		{
 			baza.push_back(c);
@@ -151,7 +156,7 @@ void zapisz(vector<osoba> baza,string nazwa_pliku="archiwum",bool kasuj=true){
 	}
 	for (auto it = baza.begin();it < baza.end(); it++)
 	{
-		plikw << *it <<"\n";
+		plikw << it->imie <<" "<< it->nazwisko<< " " << it->PESEL<<" " << it->miasto <<"\n"; //zmiana  
 	}
 	plikw.close();
 }
@@ -200,11 +205,6 @@ vector <osoba> wyswietl_osoby_w_wieku(int mode, vector<osoba> baza, int wiek){
 
 }
 
-//TODO vector <osoba> szyfruj_baze(vector<osoba> baza, string haslo){
-	
-
-//}
-
 void edytuj_rekord(osoba &os)
 {
 	cout << "\nObecne imiê: " << os.imie << "\nPodaj nowe imiê: ";
@@ -234,7 +234,7 @@ void edytuj_rekord(osoba &os)
 		cout << "\nPESEL zmieniono.";
 	}
 	cout << "\nPodaj miasto: ";
-	#undef max
+	#undef max   // max jest makrem z windows.h musimy je dezaktywowaæ by u¿yæ funkcji max()
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	getline(cin, os.miasto);
@@ -245,6 +245,10 @@ void edytuj_rekord(osoba &os)
 void archiwizuj(string nazwa_in, string nazwa_out,bool kasuj) {
 	ifstream plik_in(nazwa_in);
 	ofstream plik_out(nazwa_out);
+	if (!plik_in) {
+		cout << "Nie ma takiego pliku! ";
+		return;
+	}
 	plik_out << plik_in.rdbuf();
 	plik_in.close();
 	plik_out.close();

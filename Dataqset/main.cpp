@@ -9,7 +9,7 @@ int main()
 {
 
 	setlocale(LC_ALL, "polish");
-	pobierz_dane(baza);	
+
 	
 	wstep();
 	ranga();

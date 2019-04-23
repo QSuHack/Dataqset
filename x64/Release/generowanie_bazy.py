@@ -1,3 +1,4 @@
+# kod zaczyna się od 827 linijki wcześniej są dane
 a = """Adalbert
 Adam
 Adela
@@ -262,7 +263,6 @@ Konrad
 Konrada
 Konstancja
 Konstanty
-
 Konstantyn
 Kordelia
 Kordian
@@ -886,5 +886,7 @@ def generuj(nazwa_pliku):
     for y in baza:
         for i in y:
             dane.write(i)
-            dane.write(" ")
-        dane.write("\n")
+            if i !=y[-1]:
+                dane.write(" ")
+        if y != baza[-1]:
+            dane.write("\n")

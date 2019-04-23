@@ -84,7 +84,7 @@ bool ageYtoOSortCondition(osoba & s1, osoba & s2)
 		return s1.data_urodzenia.tm_year > s2.data_urodzenia.tm_year;
 	else if (s1.data_urodzenia.tm_mon != s2.data_urodzenia.tm_mon)
 		return s1.data_urodzenia.tm_mon > s2.data_urodzenia.tm_mon;
-	else if (s1.data_urodzenia.tm_mday != s2.data_urodzenia.tm_mday)
+	else 
 		return s1.data_urodzenia.tm_mday > s2.data_urodzenia.tm_mday;
 }
 
@@ -99,7 +99,7 @@ bool ageOtoYSortCondition(osoba & s1, osoba & s2)
 		return s1.data_urodzenia.tm_year < s2.data_urodzenia.tm_year;
 	else if (s1.data_urodzenia.tm_mon != s2.data_urodzenia.tm_mon)
 		return s1.data_urodzenia.tm_mon < s2.data_urodzenia.tm_mon;
-	else if (s1.data_urodzenia.tm_mday != s2.data_urodzenia.tm_mday)
+	else 
 		return s1.data_urodzenia.tm_mday < s2.data_urodzenia.tm_mday;
 }
 
@@ -115,7 +115,7 @@ void sort_menu(vector<osoba> & baza)
 {
 	system("pause");
 	system("cls");
-	cout << "1. Sortowanie po imieniu od A do Z\n2. Sortowanie po imieniu od Z do A\n3. Sortowanie po nazwisku od A do Z\n4. Sortowanie po nazwisku od Z do A\n5. Sortowanie po mieœcie od A do Z\n6. Sortowanie po mieœcie od Z do A\n7.Sortowanie po wieku, od najm³odzszego do najstarszego\n8.Sortowanie wieku, od najstarszego do najm³odzszego\n";
+	cout << "1. Sortowanie po imieniu od A do Z\n2. Sortowanie po imieniu od Z do A\n3. Sortowanie po nazwisku od A do Z\n4. Sortowanie po nazwisku od Z do A\n5. Sortowanie po mieœcie od A do Z\n6. Sortowanie po mieœcie od Z do A\n7. Sortowanie po wieku, od najm³odzszego do najstarszego\n8. Sortowanie wieku, od najstarszego do najm³odzszego\n";
 
 	switch (_getch())
 	{
