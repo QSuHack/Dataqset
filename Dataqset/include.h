@@ -117,7 +117,7 @@ void pokaz_vector(vector <T, A> vector_)
 	int i = 1;
 	for (auto it = vector_.begin(); it < vector_.end(); it++)
 	{
-		cout << i << "." << *it << "\n";
+		cout <<setw(2)<< i << "." << *it << "\n";
 		i++;
 
 	}

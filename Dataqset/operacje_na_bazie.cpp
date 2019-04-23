@@ -80,6 +80,9 @@ bool pobierz_dane(vector <osoba> &baza, string nazwa_pliku)
 	{
 		plik >> c.imie >> c.nazwisko >> c.PESEL;
 		getline(plik, c.miasto);
+		if (c.miasto.length() > 2) {
+			c.miasto = c.miasto.substr(1, c.miasto.size());//wycinanie spacji z pocz¹tku 
+		}
 		if (c.PESEL.length() ==11 )
 		{
 			baza.push_back(c);

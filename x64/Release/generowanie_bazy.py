@@ -886,5 +886,7 @@ def generuj(nazwa_pliku):
     for y in baza:
         for i in y:
             dane.write(i)
-            dane.write(" ")
-        dane.write("\n")
+            if i !=y[-1]:
+                dane.write(" ")
+        if y != baza[-1]:
+            dane.write("\n")

@@ -65,7 +65,6 @@ bool zaloguj_jako_wielki_brat(){
 void pokaz_menu() {
 	cout << "\nDostêpne opcje: \n1.Wczytaj dane z pliku.\n2.Poka¿ bazê danych.\n3.Edytuj bazê danych"
 		<< "\n4.Archiwizuj bazê danych.\n5.Posortuj bazê\n6.Statystyki\n7.Ostateczne rozwi¹zanie problemu ludzkoœci(usuñ bazê danych)\n8.Zapisz zmiany.\n9.Zaawansowane \nESC Wyjœcie.\n";
-	int position = 0;
 	while (true) {
 		Sleep(200);  // blokowanie multi-wywo³añ funkcji przy jednym wciœniêciu klawisza
 		if (GetKeyState(VK_UP) < 0)
@@ -76,7 +75,7 @@ void pokaz_menu() {
 		if (GetKeyState(VK_ESCAPE) < 0)
 		{
 			cout << "¯egnaj!";
-			break;
+			break; 
 		}
 		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0) {
 			string tmp;
@@ -114,7 +113,7 @@ void pokaz_menu() {
 			cin >> tmp;
 			nazwa_docelowa += ".txt";
 			nazwa_do_archiwizacji += ".txt";
-			if (tmp.c_str() == "T") {
+			if (tmp == "T") {
 				kasowanie = true;
 			}
 			else {
@@ -197,9 +196,9 @@ void pokaz_menu() {
 	}
 }
 
-void edytuj_baze(vector <osoba> &baza){
-	cout << "Wybierz co chcesz zedytowaæ: \n1.Dodaj osobê.\n2.Usuñ osobê\n3.Edytuj rekord\n";
-	while(true){
+void edytuj_baze(vector <osoba>& baza) {
+	cout << "Wybierz co chcesz zedytowaæ: \n1.Dodaj osobê.\n2.Usuñ osobê\n3.Edytuj rekord\n4.Wyszukaj osobê\n";
+	while (true) {
 		if (GetKeyState(0x31) < 0 || GetKeyState(VK_NUMPAD1) < 0)
 		{
 			Sleep(200);
@@ -215,20 +214,20 @@ void edytuj_baze(vector <osoba> &baza){
 			getline(cin, osoba_do_usuniecia);
 			try
 			{
-			vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
-			pokaz_vector(zestaw);
-			cout << "Podaj numer osoby: ";
-			usun_osobe(baza,(zestaw.at((_getch() -  (long long) 49))));
+				vector <osoba> zestaw = znajdz_zestaw_osob(baza, osoba_do_usuniecia);
+				pokaz_vector(zestaw);
+				cout << "Podaj numer osoby: ";
+				usun_osobe(baza, (zestaw.at((_getch() - (long long)49))));
 			}
-			catch (out_of_range){
+			catch (out_of_range) {
 				cout << " Nie powiod³o siê. Z³y zakres. \n";
 			}
-			catch (ExBrakOsoby& e){
+			catch (ExBrakOsoby & e) {
 				cout << e.what();
 			}
 			break;
 		}
-		if (GetKeyState(0x33)<0 || GetKeyState(VK_NUMPAD3)<0){
+		if (GetKeyState(0x33) < 0 || GetKeyState(VK_NUMPAD3) < 0) {
 
 
 			cout << "ZnajdŸ osobê do zmiany.\nPodaj imiê LUB nazwisko LUB PESEL:";
@@ -241,27 +240,43 @@ void edytuj_baze(vector <osoba> &baza){
 				cout << "Podaj numer osoby: ";
 				osoba tmp = zestaw.at((_getch() - (long long)49));
 				auto it = baza.begin();
-				for (it ; it < baza.end(); it++) {
+				for (it; it < baza.end(); it++) {
 					if (tmp == *it) {
 						break;
 					}
 				}
-				edytuj_rekord(*it); 
+				edytuj_rekord(*it);
 				//Dobra chyba ju¿ dzia³a
-				
+
 			}
 			catch (out_of_range)
 			{
 				cout << " Nie powiod³o siê. Z³y zakres. \n";
 			}
-			catch (ExBrakOsoby& e)
+			catch (ExBrakOsoby & e)
 			{
 				cout << e.what();
 			}
 			break;
 
 		}
-		if (GetKeyState(VK_ESCAPE)<0){
+		if (GetKeyState(0x34) < 0 || GetKeyState(VK_NUMPAD4) < 0) {
+			string szukana_osoba;
+			cout << "Wyszukiwanie osób\nPodaj imiê lub nazwisko lub PESEL lub miasto osoby któr¹ chcesz znaleŸæ: ";
+			cin >> szukana_osoba;
+			try
+			{
+				vector <osoba> zestaw = znajdz_zestaw_osob(baza, szukana_osoba);
+				pokaz_vector(zestaw);
+			}
+			catch (ExBrakOsoby & e)
+			{
+				cout << e.what();
+			}
+			break;
+		}
+
+		if (GetKeyState(VK_ESCAPE) < 0) {
 			Sleep(100);
 			break;
 
@@ -274,7 +289,8 @@ void edytuj_baze(vector <osoba> &baza){
 
 }
 
-void menu_wyswietl_osoby_w_wieku() {
+
+void menu_wyswietl_osoby_w_wieku(){
 	int wiek_;
 	cout << "Tu mo¿esz wyœwietliæ osoby m³odsze/starsze lub dok³adnie w tym wybranym przez ciebie wieku\n";
 	cin >> wiek_;

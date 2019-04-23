@@ -84,7 +84,7 @@ bool ageYtoOSortCondition(osoba & s1, osoba & s2)
 		return s1.data_urodzenia.tm_year > s2.data_urodzenia.tm_year;
 	else if (s1.data_urodzenia.tm_mon != s2.data_urodzenia.tm_mon)
 		return s1.data_urodzenia.tm_mon > s2.data_urodzenia.tm_mon;
-	else if (s1.data_urodzenia.tm_mday != s2.data_urodzenia.tm_mday)
+	else 
 		return s1.data_urodzenia.tm_mday > s2.data_urodzenia.tm_mday;
 }
 
@@ -99,7 +99,7 @@ bool ageOtoYSortCondition(osoba & s1, osoba & s2)
 		return s1.data_urodzenia.tm_year < s2.data_urodzenia.tm_year;
 	else if (s1.data_urodzenia.tm_mon != s2.data_urodzenia.tm_mon)
 		return s1.data_urodzenia.tm_mon < s2.data_urodzenia.tm_mon;
-	else if (s1.data_urodzenia.tm_mday != s2.data_urodzenia.tm_mday)
+	else 
 		return s1.data_urodzenia.tm_mday < s2.data_urodzenia.tm_mday;
 }
 
